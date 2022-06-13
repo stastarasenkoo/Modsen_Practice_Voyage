@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -11,12 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Voyage.Business\Voyage.Business.csproj" />
+    <ProjectReference Include="..\Voyage.DependencyInjection\Voyage.DependencyInjection.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Voyage.Business\Voyage.Business.csproj" />
-    <ProjectReference Include="..\Voyage.DependencyInjection\Voyage.DependencyInjection.csproj" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

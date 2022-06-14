@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Voyage.DataAccess.Model
 {
     internal class Ticket
     {
+        [Key]
         public int PassengerId { get; set; }//foreign key
         public Passenger Passenger { get; set; }//navigational property
         public int TripId { get; set; }//foreign key

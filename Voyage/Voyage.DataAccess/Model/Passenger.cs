@@ -14,5 +14,6 @@ namespace Voyage.DataAccess.Model
         public User User { get; set; } //navigational property
         public int TripsCount { get; set; }
         public int Points { get; set; }
+        public ICollection<Ticket> Tickets { get; set; }
     }
 }

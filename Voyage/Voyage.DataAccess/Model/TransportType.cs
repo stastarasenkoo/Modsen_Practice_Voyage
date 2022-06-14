@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Voyage.DataAccess.Model
 {
-    internal class Role
+    internal class TransportType
     {
-        public int RoleId { get; set; } //primary key 
+        public int TransportTypeId { get; set; } //primary key
         public string Name { get; set; }
+        public double CostRate { get; set; }
     }
 }

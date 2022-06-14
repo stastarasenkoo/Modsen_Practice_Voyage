@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Voyage.DataAccess
+namespace Voyage.DataAccess.Model
 {
     internal class User
     {
-        public int UserId { get; set; } //первичный ключ 
-        public int RoleId { get; set; } //внешний ключ
-        public Role Role { get; set; } //навигационное свойство
+        public int UserId { get; set; } //primary key
+        public int RoleId { get; set; } //foreign key
+        public Role Role { get; set; } //navigational property
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string ThirdName { get; set; }

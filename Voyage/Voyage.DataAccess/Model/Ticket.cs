@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Voyage.DataAccess
+namespace Voyage.DataAccess.Model
 {
     internal class Ticket
     {
-        public int PassengerId { get; set; }//внешний ключ
-        public Passenger Passenger { get; set; }//навигационное свойство
+        public int PassengerId { get; set; }//foreign key
+        public Passenger Passenger { get; set; }//navigational property
 
         /*
-        public int TripId { get; set; }//внешний ключ
-        public Trip Trip { get; set; }//навигационное свойство
+        public int TripId { get; set; }//foreign key
+        public Trip Trip { get; set; }//navigational property
         */
 
-        //эти ключи так же первичные.Донастрою при настройке контекста
+        //This keys also primary.Fix later when create context
 
         public DateTime PuchaseDate { get; set; }
         public decimal Cost { get; set; }

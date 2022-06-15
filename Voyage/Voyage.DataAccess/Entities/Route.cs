@@ -1,4 +1,4 @@
-﻿namespace Voyage.DataAccess.Models
+﻿namespace Voyage.DataAccess.Entities
 {
     public class Route
     {

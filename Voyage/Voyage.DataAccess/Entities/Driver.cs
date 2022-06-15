@@ -1,6 +1,6 @@
 ﻿using Voyage.DataAccess.Enums;
 
-namespace Voyage.DataAccess.Models
+namespace Voyage.DataAccess.Entities
 {
     public class Driver
     {

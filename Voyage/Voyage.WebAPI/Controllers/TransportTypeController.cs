@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Mapster;
+using Microsoft.AspNetCore.Mvc;
 using Voyage.Business.Models;
 using Voyage.Business.Services.Interfaces;
-using Voyage.DataAccess.Entities;
+using Voyage.WebAPI.Models;
 
 namespace Voyage.WebAPI.Controllers
 {
@@ -16,20 +17,27 @@ namespace Voyage.WebAPI.Controllers
             this.service = service;
         }
 
+        [HttpGet(Name = "GetAll")]
+        public async Task<IEnumerable<TransportTypeDto>> GetAllAsync()
+        {
+            return await service.GetAllAsync();
+        }
+
         [HttpGet("{id}", Name = "GetById")]
-        public async Task<TransportType?> GetTransportTypeByIdAsync(int id)
+        public async Task<TransportTypeDto?> GetTransportTypeByIdAsync(int id)
         {
             return await service.GetByIdAsync(id);
         }
 
         [HttpPost(Name = "Create")]
-        public async Task CreateAsync(TransportType transport)
+        public async Task CreateAsync(CreateTransportTypeRequest transport)
         {
-            await service.CreateAsync(transport);
+            var tranportModel = transport.Adapt<TransportTypeDto>();
+            await service.CreateAsync(tranportModel);
         }
 
         [HttpPut(Name = "Update")]
-        public async Task UpdateAsync(TransportType transport)
+        public async Task UpdateAsync(TransportTypeDto transport)
         {
             await service.UpdateAsync(transport);
         }

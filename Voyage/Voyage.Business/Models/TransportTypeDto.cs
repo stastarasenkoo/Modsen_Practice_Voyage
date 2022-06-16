@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Voyage.Business.Models
 {
-    public class TransportTypeModel
+    public class TransportTypeDto
     {
         public int Id { get; set; }
 

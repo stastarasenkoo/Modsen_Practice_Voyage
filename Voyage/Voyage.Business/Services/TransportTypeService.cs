@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using Mapster;
 using Voyage.Business.Models;
 using Voyage.Business.Services.Interfaces;
 using Voyage.DataAccess.Entities;
@@ -10,25 +10,33 @@ namespace Voyage.Business.Services
     {
         private readonly ITransportTypeRepository repository;
 
-
         public TransportTypeService(ITransportTypeRepository repository)
         {
             this.repository = repository;
-
         }
 
-        public async Task<TransportType?> GetByIdAsync(int id)
+        public async Task<IEnumerable<TransportTypeDto>> GetAllAsync()
         {
-            return await repository.GetByIdAsync(id);
-        }
-        public async Task CreateAsync(TransportType transport)
-        {
-            await repository.CreateAsync(transport);
+            var transportsDto = await repository.GetAllAsync();
+            return transportsDto.Adapt<IEnumerable<TransportTypeDto>>();
         }
 
-        public async Task UpdateAsync(TransportType transport)
+        public async Task<TransportTypeDto> GetByIdAsync(int id)
         {
-            await repository.UpdateAsync(transport);
+            var transportDto = await repository.GetByIdAsync(id);
+            return transportDto.Adapt<TransportTypeDto>();
+        }
+
+        public async Task CreateAsync(TransportTypeDto transport)
+        {
+            var transportEntitie = transport.Adapt<TransportType>();
+            await repository.CreateAsync(transportEntitie);
+        }
+
+        public async Task UpdateAsync(TransportTypeDto transport)
+        {
+            var transportEntitie = transport.Adapt<TransportType>();
+            await repository.UpdateAsync(transportEntitie);
         }
 
         public async Task DeleteAsync(int id)

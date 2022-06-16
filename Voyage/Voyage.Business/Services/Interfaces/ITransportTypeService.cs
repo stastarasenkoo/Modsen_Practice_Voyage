@@ -5,9 +5,10 @@ namespace Voyage.Business.Services.Interfaces
 {
     public interface ITransportTypeService
     {
-        Task<TransportType?> GetByIdAsync(int id);
-        Task CreateAsync(TransportType transport);
-        Task UpdateAsync(TransportType transport);
+        Task<IEnumerable<TransportTypeDto>> GetAllAsync();
+        Task<TransportTypeDto> GetByIdAsync(int id);
+        Task CreateAsync(TransportTypeDto transport);
+        Task UpdateAsync(TransportTypeDto transport);
         Task DeleteAsync(int id);
     }
 }

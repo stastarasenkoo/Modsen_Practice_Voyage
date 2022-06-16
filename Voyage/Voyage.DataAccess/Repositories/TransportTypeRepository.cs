@@ -1,4 +1,5 @@
-﻿using Voyage.DataAccess.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using Voyage.DataAccess.Context;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Repositories.Interfaces;
 
@@ -12,14 +13,25 @@ namespace Voyage.DataAccess.Repositories
         {
             appContext = context;
         }
-        public async Task<TransportType?> GetByIdAsync(int id)
+
+        public async Task<IEnumerable<TransportType>> GetAllAsync()
         {
-            return await appContext.TransportTypes.FindAsync(id);
+           return await appContext.TransportTypes.ToListAsync();
+        }
+
+        public async Task<TransportType> GetByIdAsync(int id)
+        {
+            var transport = await appContext.TransportTypes.FindAsync(id);
+            if (transport is null)
+            {
+               throw new ArgumentNullException(nameof(id));
+            }
+            return transport;
         }
 
         public async Task CreateAsync(TransportType transport)
         {
-            appContext.TransportTypes.Add(transport);
+            await appContext.TransportTypes.AddAsync(transport);
             await appContext.SaveChangesAsync();
         }
 
@@ -31,7 +43,7 @@ namespace Voyage.DataAccess.Repositories
 
         public async Task DeleteAsync(int id)
         {
-            var transport = appContext.TransportTypes.Find(id);
+            var transport = await appContext.TransportTypes.FindAsync(id);
             if (transport != null)
             {
                 appContext.TransportTypes.Remove(transport);

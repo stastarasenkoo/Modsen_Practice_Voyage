@@ -17,32 +17,32 @@ namespace Voyage.WebAPI.Controllers
             this.service = service;
         }
 
-        [HttpGet(Name = "GetAll")]
+        [HttpGet]
         public async Task<IEnumerable<TransportTypeDto>> GetAllAsync()
         {
             return await service.GetAllAsync();
         }
 
-        [HttpGet("{id}", Name = "GetById")]
+        [HttpGet("{id}")]
         public async Task<TransportTypeDto?> GetTransportTypeByIdAsync(int id)
         {
             return await service.GetByIdAsync(id);
         }
 
-        [HttpPost(Name = "Create")]
+        [HttpPost]
         public async Task CreateAsync(CreateTransportTypeRequest transport)
         {
             var tranportModel = transport.Adapt<TransportTypeDto>();
             await service.CreateAsync(tranportModel);
         }
 
-        [HttpPut(Name = "Update")]
+        [HttpPut]
         public async Task UpdateAsync(TransportTypeDto transport)
         {
             await service.UpdateAsync(transport);
         }
 
-        [HttpDelete("{id}", Name = "Delete")]
+        [HttpDelete("{id}")]
         public async Task DeleteAsync(int id)
         {
             await service.DeleteAsync(id);

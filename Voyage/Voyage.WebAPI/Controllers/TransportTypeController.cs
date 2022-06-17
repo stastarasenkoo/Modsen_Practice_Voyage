@@ -1,8 +1,8 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
-using Voyage.Business.Models;
 using Voyage.Business.Services.Interfaces;
-using Voyage.WebAPI.Models;
+using Voyage.Common.DTO;
+using Voyage.Common.RequestModels;
 
 namespace Voyage.WebAPI.Controllers
 {
@@ -24,7 +24,7 @@ namespace Voyage.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<TransportTypeDto?> GetTransportTypeByIdAsync(int id)
+        public async Task<TransportTypeDto?> GetByIdAsync(int id)
         {
             return await service.GetByIdAsync(id);
         }

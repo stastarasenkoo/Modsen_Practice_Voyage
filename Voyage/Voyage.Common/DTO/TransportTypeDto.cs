@@ -1,4 +1,4 @@
-﻿namespace Voyage.Business.Models
+﻿namespace Voyage.Common.DTO
 {
     public class TransportTypeDto
     {

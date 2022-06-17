@@ -1,4 +1,4 @@
-using Voyage.DependencyInjection;
+using Voyage.Dependencies;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDataAccess(configuration);
-builder.Services.AddBusiness();
+builder.Services.AddBusinessLogic();
 
 var app = builder.Build();
 

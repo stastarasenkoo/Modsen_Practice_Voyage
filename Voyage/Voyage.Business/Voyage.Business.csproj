@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Voyage.Common\Voyage.Common.csproj" />
     <ProjectReference Include="..\Voyage.DataAccess\Voyage.DataAccess.csproj" />
   </ItemGroup>
 

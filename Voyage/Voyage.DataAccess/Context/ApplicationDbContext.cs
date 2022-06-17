@@ -1,30 +1,35 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Voyage.DataAccess.Models;
+using Voyage.DataAccess.Entities;
 
 namespace Voyage.DataAccess.Context
 {
     public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
     {
-        public DbSet<Trip> Trips { get; set; }
+        public DbSet<Trip> Trips { get; set; } = null!;
 
-        public DbSet<Route> Routes { get; set; }
+        public DbSet<Route> Routes { get; set; } = null!;
 
-        public DbSet<TransportType> TransportTypes { get; set; }
+        public DbSet<TransportType> TransportTypes { get; set; } = null!;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            AddCoreModelsConstraints(modelBuilder);
-            base.OnModelCreating(modelBuilder);
+            AddCoreModelsConstraints(builder);
+            base.OnModelCreating(builder);
         }
 
         private static void AddCoreModelsConstraints(ModelBuilder modelBuilder)
         {
+            //User
+            modelBuilder.Entity<AppUser>()
+                .Property(u => u.TripsCount)
+                .HasDefaultValue(0);
+
             // Driver
             modelBuilder.Entity<Driver>()
                 .HasKey(d => d.UserId);

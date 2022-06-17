@@ -42,6 +42,7 @@ namespace Voyage.DataAccess.Infrastructure
             builder.ApplyConfiguration(new TicketConfiguration());
             builder.ApplyConfiguration(new TripConfiguration());
             builder.ApplyConfiguration(new RouteConfiguration());
+            builder.ApplyConfiguration(new TransportTypeConfiguration());
         }
     }
 }

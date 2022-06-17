@@ -23,7 +23,16 @@ namespace Voyage.DataAccess.Repositories
 
         public async Task<TransportType?> FindAsync(int id)
         {
-            return await appContext.TransportTypes.FindAsync(id);
+            var transportType = await appContext.TransportTypes.FindAsync(id);
+
+            if (transportType is null)
+            {
+                return null;
+            }
+
+            appContext.Entry(transportType).State = EntityState.Detached;
+
+            return transportType;
         }
 
         public async Task<TransportType> CreateAsync(TransportType transport)

@@ -1,26 +1,27 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Voyage.Business.Helpers;
-using Voyage.Business.Services;
-using Voyage.Business.Services.Interfaces;
+using Voyage.Common.Settings;
 using Voyage.DataAccess.Helpers;
-using Voyage.DataAccess.Settings;
 
 namespace Voyage.Dependencies
 {
     public static class ServiceCollectionRegistry
     {
-        public static void AddDataAccess(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDataAccess(this IServiceCollection services,
+            Action<OptionsBuilder<DatabaseConfigs>> configureOptions)
         {
-            services.Configure<DatabaseConfigs>(configuration.GetSection(nameof(DatabaseConfigs)));
+            configureOptions.Invoke(services.AddOptions<DatabaseConfigs>());
+            services.AddApplicationDbContext().AddRepositories();
 
-            services.AddApplicationDbContext()
-                .AddRepositories();
+            return services;
         }
 
-        public static void AddBusinessLogic(this IServiceCollection services)
+        public static IServiceCollection AddBusinessLogic(this IServiceCollection services)
         {
             services.AddServices();
+
+            return services;
         }
     }
 }

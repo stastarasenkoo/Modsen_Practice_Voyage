@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Infrastructure.EntityConfigs;
-using Voyage.DataAccess.Settings;
+using Voyage.Common.Settings;
 
 namespace Voyage.DataAccess.Infrastructure
 {
@@ -15,6 +15,12 @@ namespace Voyage.DataAccess.Infrastructure
         public DbSet<Route> Routes { get; set; } = null!;
 
         public DbSet<TransportType> TransportTypes { get; set; } = null!;
+
+        public DbSet<Ticket> Tickets { get; set; } = null!;
+
+        public DbSet<Driver> Drivers { get; set; } = null!;
+
+        public DbSet<Passenger> Passengers { get; set; } = null!;
 
         public ApplicationDbContext(
             DbContextOptions<ApplicationDbContext> options,

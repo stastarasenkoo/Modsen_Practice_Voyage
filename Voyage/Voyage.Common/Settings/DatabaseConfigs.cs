@@ -1,4 +1,4 @@
-﻿namespace Voyage.DataAccess.Settings
+﻿namespace Voyage.Common.Settings
 {
     public class DatabaseConfigs
     {

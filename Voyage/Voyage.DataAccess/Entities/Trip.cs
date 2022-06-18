@@ -16,7 +16,7 @@
 
         public DateTime? ArrivalTime { get; set; }
 
-        public decimal BaseCost { get; set; }
+        public decimal FinalPrice { get; set; }
 
         public string? Description { get; set; }
 

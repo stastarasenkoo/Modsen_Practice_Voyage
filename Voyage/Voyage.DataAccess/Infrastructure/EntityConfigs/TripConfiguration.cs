@@ -8,7 +8,8 @@ namespace Voyage.DataAccess.Infrastructure.EntityConfigs
     {
         public void Configure(EntityTypeBuilder<Trip> builder)
         {
-            builder.Property(t => t.BaseCost).HasPrecision(5, 2);
+            
+            builder.Property(t => t.FinalPrice).HasPrecision(6, 2);
             builder.Property(t => t.TransportNumber).HasMaxLength(20);
             builder.Property(t => t.Description).HasMaxLength(500);
         }

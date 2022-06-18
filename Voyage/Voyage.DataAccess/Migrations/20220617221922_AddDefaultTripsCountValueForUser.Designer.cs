@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Voyage.DataAccess.Infrastructure;
 
@@ -11,9 +12,10 @@ using Voyage.DataAccess.Infrastructure;
 namespace Voyage.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220617221922_AddDefaultTripsCountValueForUser")]
+    partial class AddDefaultTripsCountValueForUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,7 +252,7 @@ namespace Voyage.DataAccess.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Drivers");
+                    b.ToTable("Driver");
                 });
 
             modelBuilder.Entity("Voyage.DataAccess.Entities.Passenger", b =>
@@ -263,7 +265,7 @@ namespace Voyage.DataAccess.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Passengers");
+                    b.ToTable("Passenger");
                 });
 
             modelBuilder.Entity("Voyage.DataAccess.Entities.Route", b =>
@@ -318,7 +320,7 @@ namespace Voyage.DataAccess.Migrations
 
                     b.HasIndex("PassengerId");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Ticket");
                 });
 
             modelBuilder.Entity("Voyage.DataAccess.Entities.TransportType", b =>

@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Voyage.DataAccess.Context;
 using Voyage.DataAccess.Entities;
+using Voyage.DataAccess.Infrastructure;
 using Voyage.DataAccess.Repositories.Interfaces;
 
 namespace Voyage.DataAccess.Repositories
 {
-    public class TransportTypeRepository : ITransportTypeRepository
+    internal class TransportTypeRepository : ITransportTypeRepository
     {
         private readonly ApplicationDbContext appContext;
 
@@ -14,41 +14,58 @@ namespace Voyage.DataAccess.Repositories
             appContext = context;
         }
 
-        public async Task<IEnumerable<TransportType>> GetAllAsync()
+        public async Task<IEnumerable<TransportType>> GetAsync()
         {
-           return await appContext.TransportTypes.ToListAsync();
+            var transportTypes = appContext.TransportTypes.AsNoTracking();
+
+            return await Task.FromResult(transportTypes);
         }
 
-        public async Task<TransportType> GetByIdAsync(int id)
+        public async Task<TransportType?> FindAsync(int id)
+        {
+            var transportType = await appContext.TransportTypes.FindAsync(id);
+
+            if (transportType is null)
+            {
+                return null;
+            }
+
+            appContext.Entry(transportType).State = EntityState.Detached;
+
+            return transportType;
+        }
+
+        public async Task<TransportType> CreateAsync(TransportType transport)
+        {
+            var transportType = (await appContext.TransportTypes.AddAsync(transport)).Entity;
+
+            await appContext.SaveChangesAsync();
+
+            return transportType;
+        }
+
+        public async Task<TransportType> UpdateAsync(TransportType transport)
+        {
+            var transportType = appContext.TransportTypes.Update(transport).Entity;
+
+            await appContext.SaveChangesAsync();
+
+            return transportType;
+        }
+
+        public async Task<bool> DeleteAsync(int id)
         {
             var transport = await appContext.TransportTypes.FindAsync(id);
+
             if (transport is null)
             {
-               throw new ArgumentNullException(nameof(id));
+                return false;
             }
-            return transport;
-        }
 
-        public async Task CreateAsync(TransportType transport)
-        {
-            await appContext.TransportTypes.AddAsync(transport);
+            var deletedTransport = appContext.TransportTypes.Remove(transport).Entity;
             await appContext.SaveChangesAsync();
-        }
 
-        public async Task UpdateAsync(TransportType transport)
-        {
-            appContext.TransportTypes.Update(transport);
-            await appContext.SaveChangesAsync();
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            var transport = await appContext.TransportTypes.FindAsync(id);
-            if (transport != null)
-            {
-                appContext.TransportTypes.Remove(transport);
-                await appContext.SaveChangesAsync();
-            }
+            return deletedTransport != null;
         }
     }
 }

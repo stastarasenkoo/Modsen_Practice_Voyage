@@ -6,15 +6,9 @@
 
         public int RouteId { get; set; }
 
-        public Route Route { get; set; } = null!;
-
         public int DriverId { get; set; }
 
-        public Driver Driver { get; set; } = null!;
-
         public int TransportTypeId { get; set; }
-
-        public TransportType TransportType { get; set; } = null!;
 
         public string TransportNumber { get; set; } = null!;
 
@@ -25,6 +19,12 @@
         public decimal BaseCost { get; set; }
 
         public string? Description { get; set; }
+
+        public Route Route { get; set; } = null!;
+
+        public TransportType TransportType { get; set; } = null!;
+
+        public Driver Driver { get; set; } = null!;
 
         public ICollection<Ticket> Tickets { get; set; } = null!;
     }

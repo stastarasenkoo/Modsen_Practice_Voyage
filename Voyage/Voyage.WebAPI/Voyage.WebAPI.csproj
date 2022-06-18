@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Voyage.Business\Voyage.Business.csproj" />
-    <ProjectReference Include="..\Voyage.DependencyInjection\Voyage.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Voyage.Dependencies\Voyage.Dependencies.csproj" />
   </ItemGroup>
 
 </Project>

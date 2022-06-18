@@ -6,12 +6,12 @@ namespace Voyage.DataAccess.Entities
     {
         public int UserId { get; set; }
 
-        public AppUser User { get; set; } = null!;
-
         public int DrivingExperience { get; set; }
 
-        public DriverCategories DriverCategory { get; set; }
+        public DriverCategoryType DriverCategory { get; set; }
 
         public ICollection<Trip> Trips { get; set; } = null!;
+
+        public AppUser User { get; set; } = null!;
     }
 }

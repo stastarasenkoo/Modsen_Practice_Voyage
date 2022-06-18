@@ -1,4 +1,4 @@
-﻿namespace Voyage.WebAPI.Models
+﻿namespace Voyage.Common.RequestModels
 {
     public class CreateTransportTypeRequest
     {

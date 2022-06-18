@@ -1,5 +1,4 @@
-﻿using Voyage.Business.Models;
-using Voyage.DataAccess.Entities;
+﻿using Voyage.Common.DTO;
 
 namespace Voyage.Business.Services.Interfaces
 {

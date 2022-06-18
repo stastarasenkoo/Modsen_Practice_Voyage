@@ -1,4 +1,5 @@
-using Voyage.DependencyInjection;
+using Voyage.Common.Settings;
+using Voyage.Dependencies;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -10,8 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDataAccess(configuration);
-builder.Services.AddBusiness();
+builder.Services
+    .AddDataAccess(options => options.BindConfiguration((nameof(DatabaseConfigs))))
+    .AddBusinessLogic();
 
 var app = builder.Build();
 

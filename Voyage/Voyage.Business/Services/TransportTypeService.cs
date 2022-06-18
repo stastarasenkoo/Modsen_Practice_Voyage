@@ -1,8 +1,8 @@
 ﻿using Mapster;
-using Voyage.Common.DTO;
 using Voyage.Business.Services.Interfaces;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Repositories.Interfaces;
+using Voyage.Common.Dtos;
 
 namespace Voyage.Business.Services
 {

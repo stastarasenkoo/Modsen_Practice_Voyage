@@ -1,4 +1,4 @@
-﻿namespace Voyage.Common.DTO
+﻿namespace Voyage.Common.Dtos
 {
     public class TransportTypeDto
     {

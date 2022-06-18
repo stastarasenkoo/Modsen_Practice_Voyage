@@ -1,4 +1,4 @@
-﻿using Voyage.Common.DTO;
+﻿using Voyage.Common.Dtos;
 
 namespace Voyage.Business.Services.Interfaces
 {

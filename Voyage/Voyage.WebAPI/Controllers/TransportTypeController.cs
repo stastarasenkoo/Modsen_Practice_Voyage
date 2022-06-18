@@ -1,7 +1,7 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Voyage.Business.Services.Interfaces;
-using Voyage.Common.DTO;
+using Voyage.Common.Dtos;
 using Voyage.Common.RequestModels;
 
 namespace Voyage.WebAPI.Controllers

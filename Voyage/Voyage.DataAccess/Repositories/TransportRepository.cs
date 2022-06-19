@@ -22,7 +22,7 @@ namespace Voyage.DataAccess.Repositories
         {
             var transport = request.Adapt<Transport>();
 
-            transport = (await context.Transports.AddAsync(transport)).Entity;
+            transport = context.Transports.Add(transport).Entity;
 
             await context.SaveChangesAsync();
 

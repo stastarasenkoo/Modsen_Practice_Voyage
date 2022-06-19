@@ -16,6 +16,6 @@
 
         public double Distance { get; set; }
 
-        public ICollection<Trip> Trips { get; set; } = null!;
+        public virtual ICollection<Trip> Trips { get; set; } = null!;
     }
 }

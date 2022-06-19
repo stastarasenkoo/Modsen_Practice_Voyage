@@ -18,6 +18,6 @@ namespace Voyage.DataAccess.Entities
 
         public TransportType Type { get; set; }
 
-        public ICollection<Trip> Trips { get; set; } = null!;
+        public virtual ICollection<Trip> Trips { get; set; } = null!;
     }
 }

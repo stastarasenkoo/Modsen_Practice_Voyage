@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Voyage.Business.Services.Interfaces;
 using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
@@ -10,6 +11,7 @@ namespace Voyage.WebAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class TransportController : ControllerBase
     {
         private readonly ITransportService service;
@@ -27,9 +29,10 @@ namespace Voyage.WebAPI.Controllers
         /// Gets transports.
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<TransportShortInfoResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //[ProducesResponseType(typeof(IEnumerable<TransportShortInfoResponse>), StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public async Task<IActionResult> GetAsync()
         {
             return Ok(await service.GetAsync());

@@ -14,8 +14,7 @@ namespace Voyage.DataAccess.Helpers
         {
             services.AddDbContext<ApplicationDbContext>()
                 .AddIdentity<AppUser, IdentityRole<int>>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
+                .AddEntityFrameworkStores<ApplicationDbContext>(); 
             return services;
         }
 

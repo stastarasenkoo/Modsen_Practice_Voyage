@@ -12,8 +12,8 @@ namespace Voyage.DataAccess.Entities
 
         public int TripsCount { get; set; }
 
-        public Passenger? Passenger { get; set; }
+        public virtual Passenger? Passenger { get; set; }
 
-        public Driver? Driver { get; set; }
+        public virtual Driver? Driver { get; set; }
     }
 }

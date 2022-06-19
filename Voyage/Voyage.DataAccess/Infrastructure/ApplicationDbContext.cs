@@ -31,7 +31,9 @@ namespace Voyage.DataAccess.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder contextOptionsBuilder)
         {
-            contextOptionsBuilder.UseSqlServer();
+            contextOptionsBuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

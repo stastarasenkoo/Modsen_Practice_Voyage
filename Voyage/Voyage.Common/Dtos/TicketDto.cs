@@ -7,7 +7,5 @@
         public int TripId { get; set; }
 
         public DateTime PuchaseDate { get; set; }
-
-        public decimal Cost { get; set; }
     }
 }

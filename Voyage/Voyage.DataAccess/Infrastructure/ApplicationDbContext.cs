@@ -14,7 +14,7 @@ namespace Voyage.DataAccess.Infrastructure
 
         public DbSet<Route> Routes { get; set; } = null!;
 
-        public DbSet<TransportType> TransportTypes { get; set; } = null!;
+        public DbSet<Transport> Transports { get; set; } = null!;
 
         public DbSet<Ticket> Tickets { get; set; } = null!;
 
@@ -48,7 +48,7 @@ namespace Voyage.DataAccess.Infrastructure
             builder.ApplyConfiguration(new TicketConfiguration());
             builder.ApplyConfiguration(new TripConfiguration());
             builder.ApplyConfiguration(new RouteConfiguration());
-            builder.ApplyConfiguration(new TransportTypeConfiguration());
+            builder.ApplyConfiguration(new TransportConfiguration());
         }
     }
 }

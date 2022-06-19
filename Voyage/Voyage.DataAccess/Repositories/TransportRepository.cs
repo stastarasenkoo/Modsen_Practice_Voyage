@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Entities;
-using Voyage.DataAccess.Entities.Enums;
 using Voyage.DataAccess.Infrastructure;
 using Voyage.DataAccess.Repositories.Interfaces;
 
@@ -48,7 +47,7 @@ namespace Voyage.DataAccess.Repositories
         public async Task<TransportDetailsResponse?> FindAsync(int id)
         {
             var transport = await context.Transports.FindAsync(id);
-            
+
             return transport?.Adapt<TransportDetailsResponse>();
         }
 
@@ -69,9 +68,15 @@ namespace Voyage.DataAccess.Repositories
                 return null;
             }
 
-            transport.Number = request.Number;
-            transport.Color = (Color)request.Color;
-            transport.PriceRate = request.PriceRate;
+            context.Entry(transport).State = EntityState.Detached;
+
+            TypeAdapterConfig<UpdateTransportRequest, Transport>
+                .NewConfig()
+                .Map(dest => dest.Mark, src => transport.Mark)
+                .Map(dest => dest.SeatsCount, src => transport.SeatsCount);
+
+            transport = request.Adapt<Transport>();
+            context.Transports.Update(transport);
 
             await context.SaveChangesAsync();
 

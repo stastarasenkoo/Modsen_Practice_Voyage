@@ -1,6 +1,6 @@
 ﻿namespace Voyage.Common.ResponseModels
 {
-    public class TicketIShortInfoResponse
+    public class TicketShortInfoResponse
     {
         public string RouteName { get; set; } = null!;
 

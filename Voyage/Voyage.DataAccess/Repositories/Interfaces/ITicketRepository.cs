@@ -8,9 +8,9 @@ namespace Voyage.DataAccess.Repositories.Interfaces
     {
         Task<TicketDetailsResponse> GetTicketDetailsAsync(GetTicketDetailsRequest request);
 
-        Task<IEnumerable<TicketIShortInfoResponse>> GetByPassengerIdAsync(int passengerId);
+        Task<IEnumerable<TicketShortInfoResponse>> GetByPassengerIdAsync(int passengerId);
 
-        Task<IEnumerable<TicketIShortInfoResponse>> GetByTripIdAsync(int tripId);
+        Task<IEnumerable<TicketShortInfoResponse>> GetByTripIdAsync(int tripId);
 
         Task<IEnumerable<TicketDto>> GetAsync();
 

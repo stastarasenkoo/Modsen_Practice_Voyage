@@ -16,6 +16,8 @@ namespace Voyage.DataAccess.Entities
 
         public double PriceRate { get; set; }
 
+        public TransportType Type { get; set; }
+
         public ICollection<Trip> Trips { get; set; } = null!;
     }
 }

@@ -70,7 +70,7 @@ namespace Voyage.DataAccess.Repositories
             }
 
             transport.Number = request.Number;
-            transport.Color = (Color)(int)request.Color;
+            transport.Color = (Color)request.Color;
             transport.PriceRate = request.PriceRate;
 
             await context.SaveChangesAsync();

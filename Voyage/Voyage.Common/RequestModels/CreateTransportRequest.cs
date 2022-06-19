@@ -13,5 +13,7 @@ namespace Voyage.Common.RequestModels
         public string Mark { get; set; } = null!;
 
         public double PriceRate { get; set; }
+
+        public TransportType Type { get; set; }
     }
 }

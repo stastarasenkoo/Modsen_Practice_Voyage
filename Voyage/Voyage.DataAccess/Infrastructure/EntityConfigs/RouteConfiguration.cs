@@ -11,6 +11,7 @@ namespace Voyage.DataAccess.Infrastructure.EntityConfigs
             builder.Property(r => r.Name).HasMaxLength(100);
             builder.Property(r => r.DepartureAddress).HasMaxLength(200);
             builder.Property(r => r.DestinationAddress).HasMaxLength(200);
+            builder.Property(t => t.BasePrice).HasPrecision(5, 2);
         }
     }
 }

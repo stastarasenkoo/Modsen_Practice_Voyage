@@ -8,21 +8,19 @@
 
         public int DriverId { get; set; }
 
-        public int TransportTypeId { get; set; }
-
-        public string TransportNumber { get; set; } = null!;
+        public int TransportId { get; set; }
 
         public DateTime DepartureTime { get; set; }
 
         public DateTime? ArrivalTime { get; set; }
 
-        public decimal BaseCost { get; set; }
+        public decimal FinalPrice { get; set; }
 
         public string? Description { get; set; }
 
         public Route Route { get; set; } = null!;
 
-        public TransportType TransportType { get; set; } = null!;
+        public Transport Transport { get; set; } = null!;
 
         public Driver Driver { get; set; } = null!;
 

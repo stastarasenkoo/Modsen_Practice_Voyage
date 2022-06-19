@@ -8,8 +8,6 @@
 
         public DateTime PuchaseDate { get; set; }
 
-        public decimal Cost { get; set; }
-
         public Trip Trip { get; set; } = null!;
 
         public Passenger Passenger { get; set; } = null!;

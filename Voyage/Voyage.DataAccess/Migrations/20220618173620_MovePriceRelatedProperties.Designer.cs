@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Voyage.DataAccess.Infrastructure;
 
@@ -11,9 +12,10 @@ using Voyage.DataAccess.Infrastructure;
 namespace Voyage.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220618173620_MovePriceRelatedProperties")]
+    partial class MovePriceRelatedProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -321,7 +323,7 @@ namespace Voyage.DataAccess.Migrations
                     b.ToTable("Tickets");
                 });
 
-            modelBuilder.Entity("Voyage.DataAccess.Entities.Transport", b =>
+            modelBuilder.Entity("Voyage.DataAccess.Entities.TransportType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -329,34 +331,17 @@ namespace Voyage.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Color")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Mark")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<double>("PriceRate")
+                    b.Property<double>("CostRate")
                         .HasColumnType("float");
 
-                    b.Property<int>("SeatsCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Number")
-                        .IsUnique();
-
-                    b.ToTable("Transports");
+                    b.ToTable("TransportTypes");
                 });
 
             modelBuilder.Entity("Voyage.DataAccess.Entities.Trip", b =>
@@ -387,7 +372,12 @@ namespace Voyage.DataAccess.Migrations
                     b.Property<int>("RouteId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TransportId")
+                    b.Property<string>("TransportNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("TransportTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -396,7 +386,7 @@ namespace Voyage.DataAccess.Migrations
 
                     b.HasIndex("RouteId");
 
-                    b.HasIndex("TransportId");
+                    b.HasIndex("TransportTypeId");
 
                     b.ToTable("Trips");
                 });
@@ -507,9 +497,9 @@ namespace Voyage.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Voyage.DataAccess.Entities.Transport", "Transport")
+                    b.HasOne("Voyage.DataAccess.Entities.TransportType", "TransportType")
                         .WithMany("Trips")
-                        .HasForeignKey("TransportId")
+                        .HasForeignKey("TransportTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -517,7 +507,7 @@ namespace Voyage.DataAccess.Migrations
 
                     b.Navigation("Route");
 
-                    b.Navigation("Transport");
+                    b.Navigation("TransportType");
                 });
 
             modelBuilder.Entity("Voyage.DataAccess.Entities.AppUser", b =>
@@ -542,7 +532,7 @@ namespace Voyage.DataAccess.Migrations
                     b.Navigation("Trips");
                 });
 
-            modelBuilder.Entity("Voyage.DataAccess.Entities.Transport", b =>
+            modelBuilder.Entity("Voyage.DataAccess.Entities.TransportType", b =>
                 {
                     b.Navigation("Trips");
                 });

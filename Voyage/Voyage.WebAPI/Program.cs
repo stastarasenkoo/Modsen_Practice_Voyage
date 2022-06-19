@@ -1,5 +1,7 @@
 using Voyage.Common.Settings;
 using Voyage.Dependencies;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Voyage.WebAPI.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -14,6 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services
     .AddDataAccess(options => options.BindConfiguration((nameof(DatabaseConfigs))))
     .AddBusinessLogic();
+
+builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 var app = builder.Build();
 

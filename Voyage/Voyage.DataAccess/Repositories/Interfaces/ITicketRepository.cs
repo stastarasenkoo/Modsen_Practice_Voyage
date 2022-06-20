@@ -8,14 +8,10 @@ namespace Voyage.DataAccess.Repositories.Interfaces
     {
         Task<TicketDetailsResponse> GetTicketDetailsAsync(GetTicketDetailsRequest request);
 
-        Task<IEnumerable<TicketShortInfoResponse>> GetByPassengerIdAsync(int passengerId);
+        Task<IEnumerable<TicketShortInfoResponse>> GetAsync(GetTicketsRequest request);
 
-        Task<IEnumerable<TicketShortInfoResponse>> GetByTripIdAsync(int tripId);
+        Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request);
 
-        Task<IEnumerable<TicketDto>> GetAsync();
-
-        Task<TicketDetailsResponse> CreateAsync(TicketDto ticketDto);
-
-        Task<bool> Delete(DeleteTicketRequest request);
+        Task<bool> DeleteAsync(DeleteTicketRequest request);
     }
 }

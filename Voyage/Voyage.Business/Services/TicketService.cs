@@ -14,31 +14,22 @@ namespace Voyage.Business.Services
             this.repository = repository;
         }
 
-        public async Task<TicketDetailsResponse> CreateAsync(TicketDto ticketDto)
+
+        public async Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request)
         {
-            var ticket = await repository.CreateAsync(ticketDto);
+            var ticket = await repository.CreateAsync(request);
 
             return ticket;
         }
 
-        public Task<bool> Delete(DeleteTicketRequest request)
+        public Task<bool> DeleteAsync(DeleteTicketRequest request)
         {
-            return repository.Delete(request);
+            return repository.DeleteAsync(request);
         }
 
-        public async Task<IEnumerable<TicketDto>> GetAsync()
+        public async Task<IEnumerable<TicketShortInfoResponse>> GetAsync(GetTicketsRequest request)
         {
-            return await repository.GetAsync();
-        }
-
-        public async Task<IEnumerable<TicketShortInfoResponse>> GetByPassengerIdAsync(int passengerId)
-        {
-            return await repository.GetByPassengerIdAsync(passengerId);
-        }
-
-        public async Task<IEnumerable<TicketShortInfoResponse>> GetByTripIdAsync(int tripId)
-        {
-            return await repository.GetByTripIdAsync(tripId);
+            return await repository.GetAsync(request);
         }
 
         public async Task<TicketDetailsResponse> GetTicketDetailsAsync(GetTicketDetailsRequest request)

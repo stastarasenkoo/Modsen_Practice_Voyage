@@ -4,12 +4,7 @@ using Voyage.Common.Settings;
 using Voyage.Dependencies;
 using Voyage.WebAPI.Options;
 
-Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Override("Microsoft",LogEventLevel.Warning)
-    .MinimumLevel.Override("System", LogEventLevel.Warning)
-    .Enrich.FromLogContext()
-    .WriteTo.Console()
-    .CreateBootstrapLogger();
+Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 

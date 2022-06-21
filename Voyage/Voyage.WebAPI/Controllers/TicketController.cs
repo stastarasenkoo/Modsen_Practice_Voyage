@@ -8,7 +8,7 @@ namespace Voyage.WebAPI.Controllers
     /// <summary>
     /// Provides ticket endpoinst.
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class TicketController : ControllerBase
     {
@@ -50,7 +50,7 @@ namespace Voyage.WebAPI.Controllers
         /// </summary>
         /// <param name="request">Ticket request to delete.</param>
         [HttpDelete("{request}")]
-        [ProducesResponseType(typeof(TicketDetailsResponse), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteAsync(DeleteTicketRequest request)
@@ -63,7 +63,7 @@ namespace Voyage.WebAPI.Controllers
         /// Gets ticket details.
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<TicketDetailsResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(TicketDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetTicketDetailsAsync(GetTicketDetailsRequest request)

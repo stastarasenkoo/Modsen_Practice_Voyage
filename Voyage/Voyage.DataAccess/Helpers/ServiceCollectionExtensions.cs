@@ -22,6 +22,7 @@ namespace Voyage.DataAccess.Helpers
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ITransportRepository, TransportRepository>();
+            services.AddScoped<ITicketRepository, TicketRepository>();
 
             return services;
         }

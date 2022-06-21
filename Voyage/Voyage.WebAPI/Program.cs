@@ -1,14 +1,25 @@
+using Serilog;
+using Serilog.Events;
 using Voyage.Common.Settings;
 using Voyage.Dependencies;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using Voyage.WebAPI.Options;
 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Override("Microsoft",LogEventLevel.Warning)
+    .MinimumLevel.Override("System", LogEventLevel.Warning)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
+
 var builder = WebApplication.CreateBuilder(args);
-var configuration = builder.Configuration;
+
+builder.Host.UseSerilog((context,services, configuration) => configuration
+    .ReadFrom.Configuration(context.Configuration)
+    .ReadFrom.Services(services));
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -20,6 +31,8 @@ builder.Services
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 var app = builder.Build();
+
+app.UseSerilogRequestLogging();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

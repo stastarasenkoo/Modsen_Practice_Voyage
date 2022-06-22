@@ -6,7 +6,7 @@ namespace Voyage.Business.Services.Interfaces
 {
     public interface ITicketService
     {
-        Task<TicketDetailsResponse> GetTicketDetailsAsync(GetTicketDetailsRequest request);
+        Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request);
 
         Task<IEnumerable<TicketShortInfoResponse>> GetAsync(GetTicketsRequest request);
 

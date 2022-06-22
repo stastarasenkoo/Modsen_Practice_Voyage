@@ -32,7 +32,7 @@ namespace Voyage.Business.Services
             return await repository.GetAsync(request);
         }
 
-        public async Task<TicketDetailsResponse> GetTicketDetailsAsync(GetTicketDetailsRequest request)
+        public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)
         {
             return await repository.GetTicketDetailsAsync(request);
         }

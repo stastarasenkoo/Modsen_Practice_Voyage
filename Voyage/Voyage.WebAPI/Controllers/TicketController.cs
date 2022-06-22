@@ -8,7 +8,7 @@ namespace Voyage.WebAPI.Controllers
     /// <summary>
     /// Provides ticket endpoinst.
     /// </summary>
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TicketController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace Voyage.WebAPI.Controllers
         [ProducesResponseType(typeof(IEnumerable<TicketShortInfoResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAsync(GetTicketsRequest request)
+        public async Task<IActionResult> GetAsync([FromQuery] GetTicketsRequest request)
         {
             return Ok(await service.GetAsync(request));
         }
@@ -49,7 +49,7 @@ namespace Voyage.WebAPI.Controllers
         /// Deletes ticket by request.
         /// </summary>
         /// <param name="request">Ticket request to delete.</param>
-        [HttpDelete("{request}")]
+        [HttpDelete]
         [ProducesResponseType(typeof(bool), StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -62,11 +62,11 @@ namespace Voyage.WebAPI.Controllers
         /// <summary>
         /// Gets ticket details.
         /// </summary>
-        [HttpGet]
+        [HttpGet("details")]
         [ProducesResponseType(typeof(TicketDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetTicketDetailsAsync(GetTicketDetailsRequest request)
+        public async Task<IActionResult> GetTicketDetailsAsync([FromQuery] GetTicketDetailsRequest request)
         {
             return Ok(await service.GetTicketDetailsAsync(request));
         }

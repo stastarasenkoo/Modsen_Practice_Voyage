@@ -50,7 +50,25 @@ namespace Voyage.DataAccess.Repositories
             {
                     return await Task.Run(() =>
                     {
-                        return context.Tickets.ProjectToType<TicketShortInfoResponse>();
+                        var ticketinfo = context.Tickets.ProjectToType<TicketShortInfoResponse>();
+                        var tripinfo = context.Trips.ProjectToType<TicketShortInfoResponse>();
+                        var routeinfo = context.Routes.ProjectToType<TicketShortInfoResponse>();
+
+                        if(ticketinfo is null || tripinfo is null || routeinfo is null)
+                        {
+                            return null;
+                        }
+
+                        var ticketandtripinfo =
+                        from trip in tripinfo
+                        join ticket in ticketinfo on trip.PassengerId equals ticket.PassengerId
+                        select new { TripId = ticket.TripId, PassengerId = ticket.PassengerId, TripDate = trip.TripDate, Price = trip.Price };
+
+                       
+
+                        ticketinfo.Adapt<TicketShortInfoResponse>();
+
+                        return ticketinfo;
                     });
             }
             else if (request.PassengerId is null)
@@ -69,11 +87,22 @@ namespace Voyage.DataAccess.Repositories
             }
         }
 
-        public async Task<TicketDetailsResponse> GetTicketDetailsAsync(GetTicketDetailsRequest request)
+        public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)
         {
             var ticket = await context.Tickets.FindAsync(request.PassengerId, request.TripId);
+            var trip = await context.Trips.FindAsync(request.TripId);
+            var passenger = await context.Users.FindAsync(request.PassengerId);
 
-            return ticket.Adapt<TicketDetailsResponse>();
+
+            if (ticket is null || trip is null || passenger is null)
+            {
+                return null;
+            }
+
+            var result =  ticket.Adapt<TicketDetailsResponse>();
+            result.TripShortInfo = trip.Adapt<TripShortInfoResponse>();
+            result.PassengerName = passenger.FirstName;
+            return result;
         }
     }
 }

@@ -46,22 +46,19 @@ namespace Voyage.DataAccess.Repositories
 
         public async Task<IEnumerable<TicketShortInfoResponse>> GetAsync(GetTicketsRequest request)
         {
-            if (request.PassengerId is null)
+            if (request.PassengerId is null && request.TripId is null)
             {
-                if (request.TripId is null)
-                {
                     return await Task.Run(() =>
                     {
                         return context.Tickets.ProjectToType<TicketShortInfoResponse>();
                     });
-                }
-                else
+            }
+            else if (request.PassengerId is null)
+            {
+                return await Task.Run(() =>
                 {
-                    return await Task.Run(() =>
-                    {
-                        return context.Tickets.ProjectToType<TicketShortInfoResponse>().Where(p => p.TripId == request.TripId);
-                    });
-                }
+                    return context.Tickets.ProjectToType<TicketShortInfoResponse>().Where(p => p.TripId == request.TripId);
+                });
             }
             else
             {

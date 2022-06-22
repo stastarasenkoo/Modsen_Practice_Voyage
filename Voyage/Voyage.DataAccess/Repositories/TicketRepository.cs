@@ -54,17 +54,21 @@ namespace Voyage.DataAccess.Repositories
                         var tripinfo = context.Trips.ProjectToType<TicketShortInfoResponse>();
                         var routeinfo = context.Routes.ProjectToType<TicketShortInfoResponse>();
 
-                        if(ticketinfo is null || tripinfo is null || routeinfo is null)
-                        {
-                            return null;
-                        }
+                        //if(ticketinfo is null || tripinfo is null || routeinfo is null)
+                        //{
+                        //    return null;
+                        //}
 
                         var ticketandtripinfo =
                         from trip in tripinfo
                         join ticket in ticketinfo on trip.PassengerId equals ticket.PassengerId
-                        select new { TripId = ticket.TripId, PassengerId = ticket.PassengerId, TripDate = trip.TripDate, Price = trip.Price };
+                        select new { TripId = ticket.TripId, PassengerId = ticket.PassengerId, TripDate = trip.TripDate, Price = trip.Price, RouteName = ticket.RouteName };
 
-                       
+                        var finalresult =
+                        from route in routeinfo
+                        join ticketandtrip in ticketandtripinfo on route.RouteName equals ticketandtrip.RouteName
+                        select new { TripId = ticketandtrip.TripId, PassengerId = ticketandtrip.PassengerId, TripDate = ticketandtrip.TripDate, Price = ticketandtrip.Price, RouteName = route.RouteName };
+
 
                         ticketinfo.Adapt<TicketShortInfoResponse>();
 

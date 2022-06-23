@@ -26,9 +26,9 @@ namespace Voyage.Business.Services
             return await repository.DeleteAsync(id);
         }
 
-        public Task<TransportDetailsResponse?> FindAsync(int id)
+        public async Task<TransportDetailsResponse?> FindAsync(int id)
         {
-            var transport = repository.FindAsync(id);
+            var transport = await repository.FindAsync(id);
 
             return transport;
         }

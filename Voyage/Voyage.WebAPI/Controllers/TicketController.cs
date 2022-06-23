@@ -22,6 +22,7 @@ namespace Voyage.WebAPI.Controllers
         {
             this.service = service;
         }
+
         /// <summary>
         /// Gets tickets.
         /// </summary>
@@ -33,6 +34,7 @@ namespace Voyage.WebAPI.Controllers
         {
             return Ok(await service.GetAsync(request));
         }
+
         /// <summary>
         /// Creates ticket.
         /// </summary>
@@ -45,6 +47,7 @@ namespace Voyage.WebAPI.Controllers
         {
             return Ok(await service.CreateAsync(request));
         }
+
         /// <summary>
         /// Deletes ticket by request.
         /// </summary>
@@ -59,6 +62,7 @@ namespace Voyage.WebAPI.Controllers
 
             return NoContent();
         }
+
         /// <summary>
         /// Gets ticket details.
         /// </summary>

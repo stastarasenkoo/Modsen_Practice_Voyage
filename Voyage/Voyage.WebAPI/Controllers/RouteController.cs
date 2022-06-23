@@ -24,81 +24,87 @@ namespace Voyage.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Gets routes.
-        /// </summary>
-        /// /// <param name="page">Page number.</param>
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<RouteShortInfoResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAsync([FromQuery] int page)
-        {
-            return Ok(await service.GetAsync(page));
-        }
-
-        /// <summary>
         /// Gets route by id.
         /// </summary>
         /// <param name="id">Route id.</param>
+        /// <param name="cancellationToken">CancellationToken</param>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(RouteShortInfoResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetByIdAsync(int id)
+        public async Task<IActionResult> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
-            return Ok(await service.FindAsync(id));
+            return Ok(await service.FindAsync(id, cancellationToken));
         }
 
         /// <summary>
         /// Gets routes by name.
         /// </summary>
         /// <param name="name">Route name.</param>
+        /// <param name="cancellationToken">CancellationToken</param>
         [HttpGet("search")]
         [ProducesResponseType(typeof(RouteShortInfoResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> FindByNameAsync([FromQuery] string name)
+        public async Task<IActionResult> FindByNameAsync([FromQuery] string name, CancellationToken cancellationToken)
         {
-            return Ok(await service.FindByNameAsync(name));
+            return Ok(await service.FindByNameAsync(name, cancellationToken));
+        }
+
+        /// <summary>
+        /// Gets routes.
+        /// </summary>
+        /// <param name="page">Page number.</param>
+        /// <param name="cancellationToken">CancellationToken</param>
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<RouteShortInfoResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAsync([FromQuery] int page, CancellationToken cancellationToken)
+        {
+            return Ok(await service.GetAsync(page, cancellationToken));
         }
 
         /// <summary>
         /// Creates route.
         /// </summary>
         /// <param name="request">Create route request information.</param>
+        /// <param name="cancellationToken">CancellationToken</param>
         [HttpPost]
         [ProducesResponseType(typeof(RouteDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CreateAsync(CreateRouteRequest request)
+        public async Task<IActionResult> CreateAsync(CreateRouteRequest request, CancellationToken cancellationToken)
         {
-            return Ok(await service.CreateAsync(request));
+            return Ok(await service.CreateAsync(request, cancellationToken));
         }
 
         /// <summary>
         /// Updates route.
         /// </summary>
         /// <param name="request">Update route request information.</param>
+        /// <param name="cancellationToken">CancellationToken</param>
         [HttpPut]
         [ProducesResponseType(typeof(RouteDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateAsync(UpdateRouteRequest request)
+        public async Task<IActionResult> UpdateAsync(UpdateRouteRequest request, CancellationToken cancellationToken)
         {
-            return Ok(await service.UpdateAsync(request));
+            return Ok(await service.UpdateAsync(request, cancellationToken));
         }
 
         /// <summary>
         /// Deletes route by id.
         /// </summary>
         /// <param name="id">Route id to delete.</param>
+        /// <param name="cancellationToken">CancellationToken</param>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(RouteDetailsResponse), StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync(int id, CancellationToken cancellationToken)
         {
-            await service.DeleteAsync(id);
+            await service.DeleteAsync(id, cancellationToken);
 
             return NoContent();
         }

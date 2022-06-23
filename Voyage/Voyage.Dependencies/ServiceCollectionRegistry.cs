@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Voyage.Business.Helpers;
 using Voyage.Common.Settings;
 using Voyage.DataAccess.Helpers;
+using Voyage.DataAccess.Infrastructure;
 
 namespace Voyage.Dependencies
 {
@@ -20,7 +21,7 @@ namespace Voyage.Dependencies
         public static IServiceCollection AddBusinessLogic(this IServiceCollection services)
         {
             services.AddServices();
-
+            
             return services;
         }
     }

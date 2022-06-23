@@ -1,9 +1,10 @@
 ﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
-using Voyage.Common.Entities;
-using Voyage.Common.Entities.Enums;
 using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
+using Voyage.DataAccess.Entities;
+using Voyage.DataAccess.Entities.Enums;
+using Voyage.DataAccess.Helpers;
 using Voyage.DataAccess.Infrastructure;
 using Voyage.DataAccess.Repositories.Interfaces;
 
@@ -48,7 +49,7 @@ namespace Voyage.DataAccess.Repositories
         public async Task<TransportDetailsResponse?> FindAsync(int id)
         {
             var transport = await context.Transports.FindAsync(id);
-            
+
             return transport?.Adapt<TransportDetailsResponse>();
         }
 

@@ -1,4 +1,4 @@
-﻿namespace Voyage.Common.Entities.Enums
+﻿namespace Voyage.DataAccess.Entities.Enums
 {
     public enum TransportType
     {

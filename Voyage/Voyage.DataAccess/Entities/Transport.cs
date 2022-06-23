@@ -1,6 +1,6 @@
-﻿using Voyage.Common.Entities.Enums;
+﻿using Voyage.DataAccess.Entities.Enums;
 
-namespace Voyage.Common.Entities
+namespace Voyage.DataAccess.Entities
 {
     public class Transport
     {

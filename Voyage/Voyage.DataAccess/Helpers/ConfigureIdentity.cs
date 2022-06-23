@@ -13,18 +13,16 @@ namespace Voyage.DataAccess.Helpers
                {
                     UserClaims =
                     {
-                        JwtClaimTypes.Audience
+                        JwtClaimTypes.Audience,
+                        JwtClaimTypes.Role,
                     },
-                   Scopes =
-                   {
-                       "Voyage"
-                   },
+                    Scopes =
+                    {
+                        "Voyage"
+                    },
                }
            };
-
-        /// <summary>
-        /// List of identity resources.
-        /// </summary>
+        
         public static IEnumerable<IdentityResource> IdentityResources =>
            new List<IdentityResource>
            {
@@ -32,18 +30,12 @@ namespace Voyage.DataAccess.Helpers
                new IdentityResources.Profile(),
            };
 
-        /// <summary>
-        /// List of scopes.
-        /// </summary>
         public static IEnumerable<ApiScope> ApiScopes =>
            new List<ApiScope>
            {
                 new ApiScope("Voyage","Voyage")
            };
-
-        /// <summary>
-        /// List of clients.
-        /// </summary>
+    
         public static IEnumerable<Client> Clients =>
             new List<Client>
             {
@@ -54,6 +46,7 @@ namespace Voyage.DataAccess.Helpers
                     ClientSecrets={
                         new Secret("eb300de4-add9-42f4-a3ac-abd3c60f1919".Sha256())
                     },
+                    RedirectUris={ "https://localhost:5084" },
                     AllowedScopes={ "Voyage",
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile}

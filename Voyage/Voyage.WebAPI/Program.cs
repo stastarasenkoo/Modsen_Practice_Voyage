@@ -1,9 +1,7 @@
 using IdentityServer4.AccessTokenValidation;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using Voyage.Common.Entities;
+using Voyage.Business.Helpers;
 using Voyage.Common.Settings;
+using Voyage.DataAccess.Helpers;
 using Voyage.Dependencies;
 using Voyage.WebAPI.Options;
 
@@ -25,25 +23,9 @@ builder.Services
     .AddDataAccess(options => options.BindConfiguration((nameof(DatabaseConfigs))))
     .AddBusinessLogic();
 
-builder.Services.Configure<DatabaseConfigs>(builder.Configuration.GetSection(nameof(DatabaseConfigs)));
+var databaseConfigs = builder.Configuration.GetSection(nameof(DatabaseConfigs)).Get<DatabaseConfigs>();
 
-builder.Services.AddIdentityServer()
-            .AddDeveloperSigningCredential()
-            .AddAspNetIdentity<AppUser>()
-            .AddConfigurationStore(options =>
-            {
-                var databaseConfigs = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<DatabaseConfigs>>().Value;
-                options.ConfigureDbContext = b => b.UseSqlServer(databaseConfigs.ConnectionString,
-                    sql => sql.MigrationsAssembly("Voyage.DataAccess"));
-            })
-            .AddOperationalStore(options =>
-            {
-                var databaseConfigs = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<DatabaseConfigs>>().Value;
-
-                options.ConfigureDbContext = b => b.UseSqlServer(databaseConfigs.ConnectionString,
-                   sql => sql.MigrationsAssembly("Voyage.DataAccess"));
-            });
-
+builder.Services.AddIdentityService(databaseConfigs);
 
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
@@ -58,7 +40,6 @@ if (app.Environment.IsDevelopment())
         options.OAuthClientId("swagger");
         options.OAuthClientSecret("eb300de4-add9-42f4-a3ac-abd3c60f1919");
     });
-
 }
 app.UseDeveloperExceptionPage();
 app.UseHttpsRedirection();

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Voyage.Common.Entities
+namespace Voyage.DataAccess.Entities
 {
     public class AppUser : IdentityUser<int>
     {

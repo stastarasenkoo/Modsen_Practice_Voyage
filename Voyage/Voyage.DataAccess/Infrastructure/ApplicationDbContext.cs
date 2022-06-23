@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Voyage.DataAccess.Infrastructure.EntityConfigs;
 using Voyage.Common.Settings;
+using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Helpers;
-using Voyage.Common.Entities;
+using Voyage.DataAccess.Infrastructure.EntityConfigs;
 
 namespace Voyage.DataAccess.Infrastructure
 {
@@ -23,22 +23,26 @@ namespace Voyage.DataAccess.Infrastructure
 
         public DbSet<Passenger> Passengers { get; set; } = null!;
 
+
+
         public ApplicationDbContext(
             DbContextOptions<ApplicationDbContext> options,
-            IOptions<DatabaseConfigs> databaseConfigs) : base(options)
+            IOptions<DatabaseConfigs> databaseConfigs
+           ) : base(options)
         {
             Database.SetConnectionString(databaseConfigs.Value.ConnectionString);
-            SeedData.EnsureSeedData(Database.GetConnectionString());
-
+            //SeedData.EnsureSeedData(databaseConfigs.Value.ConnectionString);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder contextOptionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            contextOptionsBuilder.UseSqlServer();
+            optionsBuilder.UseSqlServer();
+            
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Seed();
             ConfigureEntities(builder);
             base.OnModelCreating(builder);
         }

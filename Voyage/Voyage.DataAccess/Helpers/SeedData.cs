@@ -1,12 +1,12 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
-using IdentityServer4.EntityFramework.DbContexts;
+﻿using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.EntityFramework.Storage;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Voyage.DataAccess.Entities;
+using Voyage.DataAccess.Infrastructure;
 
 namespace Voyage.DataAccess.Helpers
 {
@@ -31,10 +31,11 @@ namespace Voyage.DataAccess.Helpers
                 scope.ServiceProvider.GetService<PersistedGrantDbContext>().Database.Migrate();
 
                 var context = scope.ServiceProvider.GetService<ConfigurationDbContext>();
+                var contextApp = scope.ServiceProvider.GetService<ApplicationDbContext>();
                 context.Database.Migrate();
                 EnsureSeedData(context);
             }
-        }
+        }        
 
         private static void EnsureSeedData(ConfigurationDbContext context)
         {
@@ -75,10 +76,15 @@ namespace Voyage.DataAccess.Helpers
                 }
                 context.SaveChanges();
             }
+            else
+            {
+                //Log.Debug("ApiScopes already populated");
+
+            }
 
             if (!context.ApiResources.Any())
             {
-                //Log.Debug("ApiScopes being populated");
+                //Log.Debug("ApiResources being populated");
                 foreach (var resource in ConfigureIdentity.ApiResources.ToList())
                 {
                     context.ApiResources.Add(resource.ToEntity());
@@ -87,7 +93,7 @@ namespace Voyage.DataAccess.Helpers
             }
             else
             {
-                //Log.Debug("ApiScopes already populated");
+                //Log.Debug("ApiResources already populated");
             }
         }
     }

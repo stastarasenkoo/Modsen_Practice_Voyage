@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Voyage.Common.Entities;
+using Voyage.DataAccess.Entities;
 
 namespace Voyage.DataAccess.Infrastructure.EntityConfigs
 {

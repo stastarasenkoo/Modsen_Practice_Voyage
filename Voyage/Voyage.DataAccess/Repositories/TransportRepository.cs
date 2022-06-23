@@ -1,9 +1,9 @@
 ﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
+using Voyage.Common.Entities;
+using Voyage.Common.Entities.Enums;
 using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
-using Voyage.DataAccess.Entities;
-using Voyage.DataAccess.Entities.Enums;
 using Voyage.DataAccess.Infrastructure;
 using Voyage.DataAccess.Repositories.Interfaces;
 

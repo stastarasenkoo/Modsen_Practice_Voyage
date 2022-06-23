@@ -1,4 +1,4 @@
-﻿namespace Voyage.DataAccess.Entities
+﻿namespace Voyage.Common.Entities
 {
     public class Ticket
     {

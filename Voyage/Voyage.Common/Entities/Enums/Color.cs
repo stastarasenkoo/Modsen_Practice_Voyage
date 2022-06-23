@@ -1,4 +1,4 @@
-﻿namespace Voyage.DataAccess.Entities.Enums
+﻿namespace Voyage.Common.Entities.Enums
 {
     public enum Color
     {

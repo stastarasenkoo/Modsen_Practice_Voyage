@@ -12,29 +12,49 @@ namespace Voyage.WebAPI.Options
             var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
-            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            options.SwaggerDoc("v1", new OpenApiInfo
             {
-                Scheme = "Bearer",
-                BearerFormat = "JWT",
-                In = ParameterLocation.Header,
-                Name = "Authorization",
-                Description = "Bearer Authentication with JWT Token",
-                Type = SecuritySchemeType.Http
+                Description = "UI to use api without client",
+                Title = "Voyage",
             });
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+
+            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
             {
-              {
-                new OpenApiSecurityScheme
+                Type = SecuritySchemeType.OAuth2,
+                Flows = new OpenApiOAuthFlows
                 {
-                   Reference = new OpenApiReference
-                   {
-                       Id = "Bearer",
-                       Type = ReferenceType.SecurityScheme
-                   }
-                },
-                new List<string>()
-              }
+                    Password = new OpenApiOAuthFlow
+                    {
+                        AuthorizationUrl = new Uri("https://localhost:5084/connect/authorize"),
+
+                        TokenUrl = new Uri("https://localhost:5084/connect/token"),
+                        Scopes = new Dictionary<string, string>
+                        {
+                            {"Voyage", "Description"}
+                        }
+                    }
+                }
             });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "oauth2"
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header
+                        },
+                        new List<string>()
+                    }
+                });
+          
+        
         }
     }
 }

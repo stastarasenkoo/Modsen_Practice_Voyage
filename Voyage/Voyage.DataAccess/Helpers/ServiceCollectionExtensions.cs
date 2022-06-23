@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Voyage.DataAccess.Entities;
+using Voyage.Common.Entities;
 using Voyage.DataAccess.Infrastructure;
 using Voyage.DataAccess.Repositories;
 using Voyage.DataAccess.Repositories.Interfaces;
@@ -14,7 +14,10 @@ namespace Voyage.DataAccess.Helpers
         {
             services.AddDbContext<ApplicationDbContext>()
                 .AddIdentity<AppUser, IdentityRole<int>>()
-                .AddEntityFrameworkStores<ApplicationDbContext>(); 
+                .AddRoles<IdentityRole<int>>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             return services;
         }
 

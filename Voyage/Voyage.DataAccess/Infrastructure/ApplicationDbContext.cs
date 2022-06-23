@@ -2,9 +2,10 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Infrastructure.EntityConfigs;
 using Voyage.Common.Settings;
+using Voyage.DataAccess.Helpers;
+using Voyage.Common.Entities;
 
 namespace Voyage.DataAccess.Infrastructure
 {
@@ -27,6 +28,8 @@ namespace Voyage.DataAccess.Infrastructure
             IOptions<DatabaseConfigs> databaseConfigs) : base(options)
         {
             Database.SetConnectionString(databaseConfigs.Value.ConnectionString);
+            SeedData.EnsureSeedData(Database.GetConnectionString());
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder contextOptionsBuilder)

@@ -9,6 +9,8 @@ namespace Voyage.DataAccess.Infrastructure.EntityConfigs
         public void Configure(EntityTypeBuilder<Passenger> builder)
         {
             builder.HasKey(p => p.UserId);
+            builder.Property(b => b.Points)
+                .HasDefaultValue(0);
         }
     }
 }

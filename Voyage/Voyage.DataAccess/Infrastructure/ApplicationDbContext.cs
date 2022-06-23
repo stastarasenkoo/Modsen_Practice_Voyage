@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Voyage.Common.Settings;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Infrastructure.EntityConfigs;
-using Voyage.Common.Settings;
 
 namespace Voyage.DataAccess.Infrastructure
 {
@@ -29,9 +29,9 @@ namespace Voyage.DataAccess.Infrastructure
             Database.SetConnectionString(databaseConfigs.Value.ConnectionString);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder contextOptionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            contextOptionsBuilder
+            optionsBuilder
                 .UseLazyLoadingProxies()
                 .UseSqlServer();
         }

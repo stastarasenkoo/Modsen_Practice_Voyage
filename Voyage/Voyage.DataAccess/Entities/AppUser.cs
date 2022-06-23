@@ -4,9 +4,9 @@ namespace Voyage.DataAccess.Entities
 {
     public class AppUser : IdentityUser<int>
     {
-        public string? FirstName { get; set; }
+        public string FirstName { get; set; } = null!;
 
-        public string? SecondName { get; set; }
+        public string SecondName { get; set; } = null!;
 
         public string? ThirdName { get; set; }
 

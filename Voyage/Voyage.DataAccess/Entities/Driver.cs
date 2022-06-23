@@ -1,4 +1,4 @@
-﻿using Voyage.DataAccess.Enums;
+﻿using Voyage.DataAccess.Entities.Types;
 
 namespace Voyage.DataAccess.Entities
 {

@@ -77,24 +77,12 @@ namespace Voyage.DataAccess.Repositories
                         
                     });
             }
-            else if (request.PassengerId is null)
-            {
-                
-                return await Task.Run(() =>
-                {
-                    
-                    return context.Tickets.ProjectToType<TicketShortInfoResponse>().Where(p => p.TripId == request.TripId);
-                });
-            }
-            else
-            {
-                
-                return await Task.Run(() =>
-                {
-                    
-                    return context.Tickets.ProjectToType<TicketShortInfoResponse>().Where(p => p.PassengerId == request.PassengerId);
-                });
-            }
+
+            Func<TicketShortInfoResponse, bool> function = (request.PassengerId is null) ? 
+            (p => p.TripId == request.TripId) : 
+            (p => p.PassengerId == request.PassengerId);
+            
+            return context.Tickets.ProjectToType<TicketShortInfoResponse>().Where(function);
         }
 
         public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)

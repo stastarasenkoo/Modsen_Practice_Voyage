@@ -1,4 +1,6 @@
-﻿namespace Voyage.DataAccess.Entities
+﻿using Voyage.DataAccess.Entities.Enums;
+
+namespace Voyage.DataAccess.Entities
 {
     public class Ticket
     {
@@ -8,8 +10,12 @@
 
         public DateTime PuchaseDate { get; set; }
 
-        public Trip Trip { get; set; } = null!;
+        public TicketStatus Status { get; set; }
 
-        public Passenger Passenger { get; set; } = null!;
+        public int BookedSeats { get; set; }
+
+        public virtual Trip Trip { get; set; } = null!;
+
+        public virtual Passenger Passenger { get; set; } = null!;
     }
 }

@@ -23,7 +23,7 @@ namespace Voyage.DataAccess.Repositories
         {
             var transport = request.Adapt<Transport>();
 
-            transport = (await context.Transports.AddAsync(transport)).Entity;
+            transport = context.Transports.Add(transport).Entity;
 
             await context.SaveChangesAsync();
 
@@ -70,9 +70,15 @@ namespace Voyage.DataAccess.Repositories
                 return null;
             }
 
-            transport.Number = request.Number;
-            transport.Color = (Color)request.Color;
-            transport.PriceRate = request.PriceRate;
+            context.Entry(transport).State = EntityState.Detached;
+
+            TypeAdapterConfig<UpdateTransportRequest, Transport>
+                .NewConfig()
+                .Map(dest => dest.Mark, src => transport.Mark)
+                .Map(dest => dest.SeatsCount, src => transport.SeatsCount);
+
+            transport = request.Adapt<Transport>();
+            context.Transports.Update(transport);
 
             await context.SaveChangesAsync();
 

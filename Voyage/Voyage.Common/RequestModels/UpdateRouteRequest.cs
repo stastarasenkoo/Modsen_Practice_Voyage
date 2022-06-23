@@ -1,6 +1,6 @@
-﻿namespace Voyage.DataAccess.Entities
+﻿namespace Voyage.Common.RequestModels
 {
-    public class Route
+    public class UpdateRouteRequest
     {
         public int Id { get; set; }
 
@@ -15,7 +15,5 @@
         public int StopsCount { get; set; }
 
         public double Distance { get; set; }
-
-        public virtual ICollection<Trip> Trips { get; set; } = null!;
     }
 }

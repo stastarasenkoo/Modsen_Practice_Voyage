@@ -6,8 +6,8 @@
 
         public int Points { get; set; }
 
-        public ICollection<Ticket> Tickets { get; set; } = null!;
+        public virtual ICollection<Ticket> Tickets { get; set; } = null!;
 
-        public AppUser User { get; set; } = null!;
+        public virtual AppUser User { get; set; } = null!;
     }
 }

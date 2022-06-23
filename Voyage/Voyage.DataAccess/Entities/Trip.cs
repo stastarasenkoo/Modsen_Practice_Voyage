@@ -18,12 +18,14 @@
 
         public string? Description { get; set; }
 
-        public Route Route { get; set; } = null!;
+        public int FreeSeats { get; set; }
 
-        public Transport Transport { get; set; } = null!;
+        public virtual Route Route { get; set; } = null!;
 
-        public Driver Driver { get; set; } = null!;
+        public virtual Transport Transport { get; set; } = null!;
 
-        public ICollection<Ticket> Tickets { get; set; } = null!;
+        public virtual Driver Driver { get; set; } = null!;
+
+        public virtual ICollection<Ticket> Tickets { get; set; } = null!;
     }
 }

@@ -10,8 +10,8 @@ namespace Voyage.DataAccess.Entities
 
         public DriverCategoryType DriverCategory { get; set; }
 
-        public ICollection<Trip> Trips { get; set; } = null!;
+        public virtual ICollection<Trip> Trips { get; set; } = null!;
 
-        public AppUser User { get; set; } = null!;
+        public virtual AppUser User { get; set; } = null!;
     }
 }

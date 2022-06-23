@@ -1,5 +1,4 @@
 ﻿using Voyage.Business.Services.Interfaces;
-using Voyage.Common.Dtos;
 using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Repositories.Interfaces;
@@ -22,12 +21,12 @@ namespace Voyage.Business.Services
             return ticket;
         }
 
-        public Task<bool> DeleteAsync(DeleteTicketRequest request)
+        public async Task<bool> DeleteAsync(DeleteTicketRequest request)
         {
-            return repository.DeleteAsync(request);
+            return await repository.DeleteAsync(request);
         }
 
-        public async Task<IEnumerable<TicketShortInfoResponse>> GetAsync(GetTicketsRequest request)
+        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(GetTicketsRequest request)
         {
             return await repository.GetAsync(request);
         }

@@ -34,6 +34,7 @@ namespace Voyage.DataAccess.Repositories
             
             if (ticket is null)
             {
+                
                 return false;
             }
 
@@ -44,7 +45,7 @@ namespace Voyage.DataAccess.Repositories
             return state == EntityState.Deleted;
         }
 
-        public async Task<IEnumerable<TicketShortInfoResponse>> GetAsync(GetTicketsRequest request)
+        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(GetTicketsRequest request)
         {
             if (request.PassengerId is null && request.TripId is null)
             {
@@ -54,38 +55,43 @@ namespace Voyage.DataAccess.Repositories
                         var tripinfo = context.Trips.ProjectToType<TicketShortInfoResponse>();
                         var routeinfo = context.Routes.ProjectToType<TicketShortInfoResponse>();
 
-                        //if(ticketinfo is null || tripinfo is null || routeinfo is null)
-                        //{
-                        //    return null;
-                        //}
+                        if(ticketinfo is null || tripinfo is null || routeinfo is null)
+                        {
+                            return null;
+                        }
 
-                        var ticketandtripinfo =
-                        from trip in tripinfo
-                        join ticket in ticketinfo on trip.PassengerId equals ticket.PassengerId
-                        select new { TripId = ticket.TripId, PassengerId = ticket.PassengerId, TripDate = trip.TripDate, Price = trip.Price, RouteName = ticket.RouteName };
-
-                        var finalresult =
-                        from route in routeinfo
-                        join ticketandtrip in ticketandtripinfo on route.RouteName equals ticketandtrip.RouteName
-                        select new { TripId = ticketandtrip.TripId, PassengerId = ticketandtrip.PassengerId, TripDate = ticketandtrip.TripDate, Price = ticketandtrip.Price, RouteName = route.RouteName };
+                        var ticketandtripinfo = ticketinfo.Join(tripinfo,
+                        ticket => ticket.TripId,
+                        trip => trip.TripId,
+                        (ticket, trip) => new { TripId = ticket.TripId, PassengerId = ticket.PassengerId, TripDate = trip.TripDate, Price = trip.Price, RouteName = ticket.RouteName });
 
 
-                        ticketinfo.Adapt<TicketShortInfoResponse>();
+                        var ticketandtripandrouteinfo = ticketandtripinfo.Join(routeinfo,
+                        ticketandtrip => ticketandtrip.RouteName,
+                        route => route.RouteName,
+                        (ticketandtrip, route) => new { TripId = ticketandtrip.TripId, PassengerId = ticketandtrip.PassengerId, RouteName = route.RouteName, TripDate = ticketandtrip.TripDate, Price = ticketandtrip.Price });
 
-                        return ticketinfo;
+                        var result = ticketandtripandrouteinfo.ProjectToType<TicketShortInfoResponse>();
+
+                        return result;
+                        
                     });
             }
             else if (request.PassengerId is null)
             {
+                
                 return await Task.Run(() =>
                 {
+                    
                     return context.Tickets.ProjectToType<TicketShortInfoResponse>().Where(p => p.TripId == request.TripId);
                 });
             }
             else
             {
+                
                 return await Task.Run(() =>
                 {
+                    
                     return context.Tickets.ProjectToType<TicketShortInfoResponse>().Where(p => p.PassengerId == request.PassengerId);
                 });
             }
@@ -100,12 +106,14 @@ namespace Voyage.DataAccess.Repositories
 
             if (ticket is null || trip is null || passenger is null)
             {
+                
                 return null;
             }
 
             var result =  ticket.Adapt<TicketDetailsResponse>();
             result.TripShortInfo = trip.Adapt<TripShortInfoResponse>();
             result.PassengerName = passenger.FirstName;
+            
             return result;
         }
     }

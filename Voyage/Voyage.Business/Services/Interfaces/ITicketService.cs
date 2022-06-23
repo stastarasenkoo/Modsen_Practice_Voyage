@@ -1,5 +1,4 @@
-﻿using Voyage.Common.Dtos;
-using Voyage.Common.RequestModels;
+﻿using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
 
 namespace Voyage.Business.Services.Interfaces
@@ -8,7 +7,7 @@ namespace Voyage.Business.Services.Interfaces
     {
         Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request);
 
-        Task<IEnumerable<TicketShortInfoResponse>> GetAsync(GetTicketsRequest request);
+        Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(GetTicketsRequest request);
 
         Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request);
 

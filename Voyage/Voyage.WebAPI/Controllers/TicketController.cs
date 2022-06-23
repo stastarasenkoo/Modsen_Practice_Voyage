@@ -53,7 +53,7 @@ namespace Voyage.WebAPI.Controllers
         [ProducesResponseType(typeof(bool), StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeleteAsync(DeleteTicketRequest request)
+        public async Task<IActionResult> DeleteAsync([FromQuery] DeleteTicketRequest request)
         {
             await service.DeleteAsync(request);
 

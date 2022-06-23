@@ -9,14 +9,16 @@ namespace Voyage.DataAccess.Helpers
         public static void Seed(this ModelBuilder modelBuilder)
         {
             var roles = new List<IdentityRole<int>>() {
-                new IdentityRole<int> { Name = "Administrator", NormalizedName = "ADMINISTRATOR" },
-                new IdentityRole<int> { Name = "Driver", NormalizedName = "DRIVER" },
-                new IdentityRole<int> { Name = "Passenger", NormalizedName = "PASSENGER" },
+                new IdentityRole<int> {Id=1, Name = "Administrator", NormalizedName = "ADMINISTRATOR" },
+                new IdentityRole<int> {Id=2, Name = "Driver", NormalizedName = "DRIVER" },
+                new IdentityRole<int> {Id=3, Name = "Passenger", NormalizedName = "PASSENGER" },
             };
-            modelBuilder.Entity<IdentityRole>().HasData(roles);
+            modelBuilder.Entity<IdentityRole<int>>().HasData(roles);
 
             var users = new List<AppUser>() {
                 new AppUser {
+                    Id = 1,
+                    SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = "HeadAdmin",
                     NormalizedUserName = "HEADADMIN",
                 }
@@ -29,10 +31,10 @@ namespace Voyage.DataAccess.Helpers
             var userRoles = new List<IdentityUserRole<int>>();
             userRoles.Add(new IdentityUserRole<int>
             {
-                UserId = users[0].Id,
+                UserId = 1,
                 RoleId = roles.First(q => q.Name == "Administrator").Id,
-            });           
-            modelBuilder.Entity<IdentityUserRole<int>>().HasData(userRoles);           
+            });
+            modelBuilder.Entity<IdentityUserRole<int>>().HasData(userRoles);
         }
 
     }

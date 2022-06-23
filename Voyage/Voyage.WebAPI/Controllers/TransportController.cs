@@ -11,7 +11,7 @@ namespace Voyage.WebAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes ="Bearer", Roles ="admin")]
+    [Authorize(AuthenticationSchemes = "Bearer", Roles = "Administrator")]
     public class TransportController : ControllerBase
     {
         private readonly ITransportService service;

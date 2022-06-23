@@ -4,7 +4,7 @@ using Voyage.DataAccess.Repositories.Interfaces;
 
 namespace Voyage.DataAccess.Repositories
 {
-    internal class AccountRepository:IAccountRepository
+    internal class AccountRepository : IAccountRepository
     {
         private readonly SignInManager<AppUser> signInManager;
         private readonly UserManager<AppUser> userManager;
@@ -20,7 +20,7 @@ namespace Voyage.DataAccess.Repositories
             var result = await userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
-                await userManager.AddToRoleAsync(user, "passenger");
+                await userManager.AddToRoleAsync(user, "Passenger");
                 await signInManager.SignInAsync(user, false);
             }
 

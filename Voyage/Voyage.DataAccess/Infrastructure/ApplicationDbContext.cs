@@ -23,19 +23,19 @@ namespace Voyage.DataAccess.Infrastructure
 
         public DbSet<Passenger> Passengers { get; set; } = null!;
 
-
+        private readonly DatabaseConfigs databaseConfigs;
 
         public ApplicationDbContext(
             DbContextOptions<ApplicationDbContext> options,
             IOptions<DatabaseConfigs> databaseConfigs
            ) : base(options)
         {
+            this.databaseConfigs = databaseConfigs.Value;
             Database.SetConnectionString(databaseConfigs.Value.ConnectionString);
-            //SeedData.EnsureSeedData(databaseConfigs.Value.ConnectionString);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {          
+        {
             optionsBuilder
                 .UseLazyLoadingProxies()
                 .UseSqlServer();
@@ -43,6 +43,7 @@ namespace Voyage.DataAccess.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.EnsureSeedData(databaseConfigs.ConnectionString);
             builder.Seed();
             ConfigureEntities(builder);
             base.OnModelCreating(builder);

@@ -1,19 +1,17 @@
 using IdentityServer4.AccessTokenValidation;
-using Voyage.Business.Helpers;
 using Serilog;
-using Serilog.Events;
+using Voyage.Business.Helpers;
 using Voyage.Common.Settings;
-using Voyage.DataAccess.Helpers;
 using Voyage.Dependencies;
 using Voyage.WebAPI.Options;
 
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
- 
+
 builder.Services.AddControllers();
 
-builder.Host.UseSerilog((context,services, configuration) => configuration
+builder.Host.UseSerilog((context, services, configuration) => configuration
     .ReadFrom.Configuration(context.Configuration)
     .ReadFrom.Services(services));
 

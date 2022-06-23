@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Entities;
-using Voyage.DataAccess.Entities.Enums;
-using Voyage.DataAccess.Helpers;
 using Voyage.DataAccess.Infrastructure;
 using Voyage.DataAccess.Repositories.Interfaces;
 

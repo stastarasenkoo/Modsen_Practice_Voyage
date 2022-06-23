@@ -22,7 +22,7 @@ namespace Voyage.DataAccess.Helpers
                     },
                }
            };
-        
+
         public static IEnumerable<IdentityResource> IdentityResources =>
            new List<IdentityResource>
            {
@@ -35,7 +35,7 @@ namespace Voyage.DataAccess.Helpers
            {
                 new ApiScope("Voyage","Voyage")
            };
-    
+
         public static IEnumerable<Client> Clients =>
             new List<Client>
             {

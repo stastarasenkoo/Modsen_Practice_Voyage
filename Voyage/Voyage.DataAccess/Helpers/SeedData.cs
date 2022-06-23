@@ -5,14 +5,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Infrastructure;
 
 namespace Voyage.DataAccess.Helpers
 {
-    public class SeedData
+    public static class SeedData
     {
-        public static void EnsureSeedData(string connectionString)
+        public static void EnsureSeedData(this ModelBuilder modelBuilder,string connectionString)
         {
             var services = new ServiceCollection();
             services.AddOperationalDbContext(options =>
@@ -41,7 +42,7 @@ namespace Voyage.DataAccess.Helpers
         {
             if (!context.Clients.Any())
             {
-                //Log.Debug("Clients being populated");
+                Log.Debug("Clients being populated");
                 foreach (var client in ConfigureIdentity.Clients.ToList())
                 {
                     context.Clients.Add(client.ToEntity());
@@ -50,12 +51,12 @@ namespace Voyage.DataAccess.Helpers
             }
             else
             {
-                //Log.Debug("Clients already populated");
+                Log.Debug("Clients already populated");
             }
 
             if (!context.IdentityResources.Any())
             {
-                //Log.Debug("IdentityResources being populated");
+                Log.Debug("IdentityResources being populated");
                 foreach (var resource in ConfigureIdentity.IdentityResources.ToList())
                 {
                     context.IdentityResources.Add(resource.ToEntity());
@@ -64,12 +65,12 @@ namespace Voyage.DataAccess.Helpers
             }
             else
             {
-                //Log.Debug("IdentityResources already populated");
+                Log.Debug("IdentityResources already populated");
             }
 
             if (!context.ApiScopes.Any())
             {
-                //Log.Debug("ApiScopes being populated");
+                Log.Debug("ApiScopes being populated");
                 foreach (var resource in ConfigureIdentity.ApiScopes.ToList())
                 {
                     context.ApiScopes.Add(resource.ToEntity());
@@ -78,13 +79,13 @@ namespace Voyage.DataAccess.Helpers
             }
             else
             {
-                //Log.Debug("ApiScopes already populated");
+                Log.Debug("ApiScopes already populated");
 
             }
 
             if (!context.ApiResources.Any())
             {
-                //Log.Debug("ApiResources being populated");
+                Log.Debug("ApiResources being populated");
                 foreach (var resource in ConfigureIdentity.ApiResources.ToList())
                 {
                     context.ApiResources.Add(resource.ToEntity());
@@ -93,7 +94,7 @@ namespace Voyage.DataAccess.Helpers
             }
             else
             {
-                //Log.Debug("ApiResources already populated");
+                Log.Debug("ApiResources already populated");
             }
         }
     }

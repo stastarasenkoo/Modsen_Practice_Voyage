@@ -21,19 +21,20 @@ namespace Voyage.Business.Helpers
 
         public static IServiceCollection AddIdentityService(this IServiceCollection services, DatabaseConfigs database)
         {
-            services.AddIdentityServer()
-                   .AddDeveloperSigningCredential()
-                   .AddAspNetIdentity<AppUser>()
-                   .AddConfigurationStore(options =>
-                   {
-                       options.ConfigureDbContext = b => b.UseSqlServer(database.ConnectionString,
-                           sql => sql.MigrationsAssembly("Voyage.DataAccess"));
-                   })
-                   .AddOperationalStore(options =>
-                   {
-                       options.ConfigureDbContext = b => b.UseSqlServer(database.ConnectionString,
-                          sql => sql.MigrationsAssembly("Voyage.DataAccess"));
-                   });
+            services
+                .AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddAspNetIdentity<AppUser>()
+                .AddConfigurationStore(options =>
+                {
+                    options.ConfigureDbContext = b => b.UseSqlServer(database.ConnectionString,
+                        sql => sql.MigrationsAssembly("Voyage.DataAccess"));
+                })
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = b => b.UseSqlServer(database.ConnectionString,
+                       sql => sql.MigrationsAssembly("Voyage.DataAccess"));
+                });
            
             return services;
         }

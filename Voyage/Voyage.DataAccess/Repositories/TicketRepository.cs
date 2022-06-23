@@ -33,8 +33,7 @@ namespace Voyage.DataAccess.Repositories
             var ticket = await context.Tickets.FindAsync(request.PassengerId,request.TripId);
             
             if (ticket is null)
-            {
-                
+            {   
                 return false;
             }
 
@@ -65,7 +64,6 @@ namespace Voyage.DataAccess.Repositories
                         trip => trip.TripId,
                         (ticket, trip) => new { TripId = ticket.TripId, PassengerId = ticket.PassengerId, TripDate = trip.TripDate, Price = trip.Price, RouteName = ticket.RouteName });
 
-
                         var ticketandtripandrouteinfo = ticketandtripinfo.Join(routeinfo,
                         ticketandtrip => ticketandtrip.RouteName,
                         route => route.RouteName,
@@ -93,8 +91,7 @@ namespace Voyage.DataAccess.Repositories
 
 
             if (ticket is null || trip is null || passenger is null)
-            {
-                
+            {                
                 return null;
             }
 

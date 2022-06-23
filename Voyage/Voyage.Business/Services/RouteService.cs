@@ -25,6 +25,7 @@ namespace Voyage.Business.Services
         {
             return await repository.FindByNameAsync(name, cancellationToken);
         }
+
         public async Task<IEnumerable<RouteShortInfoResponse>> GetAsync(int page, CancellationToken cancellationToken)
         {
             return await repository.GetAsync(page, cancellationToken);

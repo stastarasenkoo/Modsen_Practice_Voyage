@@ -51,25 +51,43 @@ namespace Voyage.DataAccess.Repositories
                     return await Task.Run(() =>
                     {
                         var ticketinfo = context.Tickets.ProjectToType<TicketShortInfoResponse>();
-                        var tripinfo = context.Trips.ProjectToType<TicketShortInfoResponse>();
-                        var routeinfo = context.Routes.ProjectToType<TicketShortInfoResponse>();
+                        var tripinfo = context.Trips.ProjectToType<Trip>();
+                        var routeinfo = context.Routes.ProjectToType<Route>();
 
                         if(ticketinfo is null || tripinfo is null || routeinfo is null)
                         {
                             return null;
                         }
 
-                        var ticketandtripinfo = ticketinfo.Join(tripinfo,
-                        ticket => ticket.TripId,
-                        trip => trip.TripId,
-                        (ticket, trip) => new { TripId = ticket.TripId, PassengerId = ticket.PassengerId, TripDate = trip.TripDate, Price = trip.Price, RouteName = ticket.RouteName });
+                        var tripandrouteinfo = tripinfo.Join(routeinfo,
+                            trip => trip.RouteId,
+                            route => route.Id,
+                            (trip, route) => new 
+                            { 
+                                TripId = trip.Id,
+                                TripDate = trip.DepartureTime,
+                                Price = trip.FinalPrice,
+                                RouteName = route.Name 
+                            });
 
-                        var ticketandtripandrouteinfo = ticketandtripinfo.Join(routeinfo,
-                        ticketandtrip => ticketandtrip.RouteName,
-                        route => route.RouteName,
-                        (ticketandtrip, route) => new { TripId = ticketandtrip.TripId, PassengerId = ticketandtrip.PassengerId, RouteName = route.RouteName, TripDate = ticketandtrip.TripDate, Price = ticketandtrip.Price });
-
+                        var ticketandtripandrouteinfo = tripandrouteinfo.Join(ticketinfo,
+                            tripandroute => tripandroute.TripId,
+                            ticket => ticket.TripId,
+                            (tripandroute, ticket) => new 
+                            { 
+                                TripId = tripandroute.TripId,
+                                PassengerId = ticket.PassengerId,
+                                RouteName = tripandroute.RouteName,
+                                TripDate = tripandroute.TripDate,
+                                Price = tripandroute.Price 
+                            });
+            
                         var result = ticketandtripandrouteinfo.ProjectToType<TicketShortInfoResponse>();
+
+                        if (result is null)
+                        {
+                            return null;
+                        }
 
                         return result;
                         

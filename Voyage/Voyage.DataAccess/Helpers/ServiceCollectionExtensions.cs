@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Infrastructure;
@@ -22,7 +21,6 @@ namespace Voyage.DataAccess.Helpers
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ITransportRepository, TransportRepository>();
-            services.AddScoped<ITicketRepository, TicketRepository>();
 
             return services;
         }

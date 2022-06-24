@@ -13,6 +13,15 @@ namespace Voyage.Business.Services
             this.repository = repository;
         }
 
+        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(GetTicketsRequest request, CancellationToken cancellationtoket)
+        {
+            return await repository.GetAsync(request, cancellationtoket);
+        }
+
+        public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)
+        {
+            return await repository.GetTicketDetailsAsync(request);
+        }
 
         public async Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request)
         {
@@ -24,16 +33,6 @@ namespace Voyage.Business.Services
         public async Task<bool> DeleteAsync(DeleteTicketRequest request)
         {
             return await repository.DeleteAsync(request);
-        }
-
-        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(GetTicketsRequest request)
-        {
-            return await repository.GetAsync(request);
-        }
-
-        public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)
-        {
-            return await repository.GetTicketDetailsAsync(request);
         }
     }
 }

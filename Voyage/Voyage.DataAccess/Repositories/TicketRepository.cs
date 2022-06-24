@@ -89,8 +89,7 @@ namespace Voyage.DataAccess.Repositories
                             return null;
                         }
 
-                        return result;
-                        
+                        return result;                       
                     });
             }
 
@@ -98,7 +97,46 @@ namespace Voyage.DataAccess.Repositories
             (p => p.TripId == request.TripId) : 
             (p => p.PassengerId == request.PassengerId);
             
-            return context.Tickets.ProjectToType<TicketShortInfoResponse>().Where(function);
+            var ticketinfo = context.Tickets.ProjectToType<TicketShortInfoResponse>().Where(function);
+            var tripinfo = context.Trips.ProjectToType<Trip>();
+            var routeinfo = context.Routes.ProjectToType<Route>();
+
+            if (ticketinfo is null || tripinfo is null || routeinfo is null)
+            {
+                return null;
+            }
+
+            var tripandrouteinfo = tripinfo.Join(routeinfo,
+                trip => trip.RouteId,
+                route => route.Id,
+                (trip, route) => new
+                {
+                    TripId = trip.Id,
+                    TripDate = trip.DepartureTime,
+                    Price = trip.FinalPrice,
+                    RouteName = route.Name
+                });
+
+            var ticketandtripandrouteinfo = tripandrouteinfo.Join(ticketinfo,
+                tripandroute => tripandroute.TripId,
+                ticket => ticket.TripId,
+                (tripandroute, ticket) => new
+                {
+                    TripId = tripandroute.TripId,
+                    PassengerId = ticket.PassengerId,
+                    RouteName = tripandroute.RouteName,
+                    TripDate = tripandroute.TripDate,
+                    Price = tripandroute.Price
+                });
+
+            var result = ticketandtripandrouteinfo.ProjectToType<TicketShortInfoResponse>();
+
+            if (result is null)
+            {
+                return null;
+            }
+
+            return result;
         }
 
         public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)

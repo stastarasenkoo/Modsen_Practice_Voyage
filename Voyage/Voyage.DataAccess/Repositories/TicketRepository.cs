@@ -118,6 +118,11 @@ namespace Voyage.DataAccess.Repositories
 
         public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)
         {
+            if(request is null)
+            {
+                return null;
+            }
+
             var ticket = await context.Tickets.FindAsync(request.PassengerId, request.TripId);
             var trip = await context.Trips.FindAsync(request.TripId);
             var passenger = await context.Users.FindAsync(request.PassengerId);

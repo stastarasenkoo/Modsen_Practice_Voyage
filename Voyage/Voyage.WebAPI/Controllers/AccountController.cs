@@ -27,23 +27,14 @@ namespace Voyage.WebAPI.Controllers
         /// Register user.
         /// </summary>
         /// <param name="registerRequest">Create user request information.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
         [HttpPost]
-        [ProducesResponseType(typeof(RegisterModelRequest), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AppUser), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> RegisterAsync(RegisterModelRequest registerRequest)
+        public async Task<IActionResult> RegisterAsync(RegisterModelRequest registerRequest, CancellationToken cancellationToken)
         {
-            var user = new AppUser
-            {
-                FirstName = registerRequest.FirstName,
-                SecondName = registerRequest.SeconName,
-                ThirdName = registerRequest.Thirdname,
-                UserName = registerRequest.UserName,
-                PhoneNumber = registerRequest.PhoneNumber,
-                Email = registerRequest.Email,
-            };
-
-            return Ok(await service.RegisterAsync(user, registerRequest.Password));
+            return Ok(await service.RegisterAsync(registerRequest, cancellationToken));
         }
     }
 }

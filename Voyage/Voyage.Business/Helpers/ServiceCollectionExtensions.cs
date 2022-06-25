@@ -4,7 +4,6 @@ using Voyage.Business.Services;
 using Voyage.Business.Services.Interfaces;
 using Voyage.Common.Settings;
 using Voyage.DataAccess.Entities;
-using Voyage.DataAccess.Helpers;
 
 namespace Voyage.Business.Helpers
 {
@@ -35,7 +34,7 @@ namespace Voyage.Business.Helpers
                     options.ConfigureDbContext = b => b.UseSqlServer(database.ConnectionString,
                        sql => sql.MigrationsAssembly("Voyage.DataAccess"));
                 });
-           
+
             return services;
         }
     }

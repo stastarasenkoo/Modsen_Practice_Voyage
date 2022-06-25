@@ -1,4 +1,5 @@
 ﻿using Voyage.Business.Services.Interfaces;
+using Voyage.Common.RequestModels;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Repositories.Interfaces;
 
@@ -14,9 +15,9 @@ namespace Voyage.Business.Services
             this.repository = repository;
         }
 
-        public async Task<AppUser> RegisterAsync(AppUser user, string password)
+        public async Task<AppUser> RegisterAsync(RegisterModelRequest registerRequest, CancellationToken cancellationToken)
         {
-            return await repository.RegisterAsync(user,password);
+            return await repository.RegisterAsync(registerRequest, cancellationToken);
         }
     }
 }

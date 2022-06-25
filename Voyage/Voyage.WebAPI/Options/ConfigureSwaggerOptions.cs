@@ -37,24 +37,22 @@ namespace Voyage.WebAPI.Options
             });
 
             options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
                 {
+                    new OpenApiSecurityScheme
                     {
-                        new OpenApiSecurityScheme
+                        Reference = new OpenApiReference
                         {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "oauth2"
-                            },
-                            Scheme = "oauth2",
-                            Name = "Bearer",
-                            In = ParameterLocation.Header
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "oauth2"
                         },
-                        new List<string>()
-                    }
-                });
-
-
+                        Scheme = "oauth2",
+                        Name = "Bearer",
+                        In = ParameterLocation.Header
+                    },
+                    new List<string>()
+                }
+            });
         }
     }
 }

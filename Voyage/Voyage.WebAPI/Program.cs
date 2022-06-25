@@ -34,7 +34,9 @@ builder.Services
     .AddDataAccess(options => options.BindConfiguration((nameof(DatabaseConfigs))))
     .AddBusinessLogic();
 
-var databaseConfigs = builder.Configuration.GetSection(nameof(DatabaseConfigs)).Get<DatabaseConfigs>();
+var databaseConfigs = builder.Configuration
+    .GetSection(nameof(DatabaseConfigs))
+    .Get<DatabaseConfigs>();
 
 builder.Services.AddIdentityService(databaseConfigs);
 

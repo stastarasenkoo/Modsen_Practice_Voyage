@@ -1,19 +1,16 @@
 ﻿using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.EntityFramework.Storage;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
-using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Infrastructure;
 
 namespace Voyage.DataAccess.Helpers
 {
     public static class SeedData
     {
-        public static void EnsureSeedData(this ModelBuilder modelBuilder,string connectionString)
+        public static void EnsureSeedData(this ModelBuilder modelBuilder, string connectionString)
         {
             var services = new ServiceCollection();
             services.AddOperationalDbContext(options =>
@@ -34,14 +31,14 @@ namespace Voyage.DataAccess.Helpers
                 var context = scope.ServiceProvider.GetService<ConfigurationDbContext>();
                 var contextApp = scope.ServiceProvider.GetService<ApplicationDbContext>();
                 context.Database.Migrate();
-                EnsureSeedData(context);
+                EnsureSeedData(context);                
             }
-        }        
+        }
 
         private static void EnsureSeedData(ConfigurationDbContext context)
         {
             if (!context.Clients.Any())
-            {
+            {                
                 Log.Debug("Clients being populated");
                 foreach (var client in ConfigureIdentity.Clients.ToList())
                 {
@@ -80,7 +77,6 @@ namespace Voyage.DataAccess.Helpers
             else
             {
                 Log.Debug("ApiScopes already populated");
-
             }
 
             if (!context.ApiResources.Any())

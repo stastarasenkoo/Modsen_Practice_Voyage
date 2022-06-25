@@ -18,25 +18,25 @@ namespace Voyage.DataAccess.Repositories
             this.context = context;
         }
 
-        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(int page, GetTicketsRequest request, CancellationToken cancellationtoket)
+        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(int page, GetTicketsRequest request, CancellationToken cancellationtoken)
         {
             page = page <= 0 ? PaginationConstants.StartPage : page;
 
             if (request.PassengerId is null && request.TripId is null)
             {
-                return await Task.Run(() =>
-                {
-                    var ticketinfo = context.Tickets.Skip((page - PaginationConstants.PageStep) * PaginationConstants.PageSize)
-                .   Take(PaginationConstants.PageSize).ProjectToType<TicketShortInfoResponse>();
-                    var tripinfo = context.Trips.ProjectToType<Trip>();
-                    var routeinfo = context.Routes.ProjectToType<Route>();
+                    var ticketInfoToNullParameters = context.Tickets
+                    .Skip((page - PaginationConstants.PageStep) * PaginationConstants.PageSize)
+                    .Take(PaginationConstants.PageSize)
+                    .ProjectToType<TicketShortInfoResponse>();
+                    var tripInfoToNullParameters = context.Trips.ProjectToType<Trip>();
+                    var routeInfoToNullParameters = context.Routes.ProjectToType<Route>();
 
-                    if (ticketinfo is null || tripinfo is null || routeinfo is null)
+                    if (ticketInfoToNullParameters is null || tripInfoToNullParameters is null || routeInfoToNullParameters is null)
                     {
                         return null;
                     }
 
-                    var tripandrouteinfo = tripinfo.Join(routeinfo,
+                    var tripAndRouteInfoToNullParameters = tripInfoToNullParameters.Join(routeInfoToNullParameters,
                         trip => trip.RouteId,
                         route => route.Id,
                         (trip, route) => new
@@ -47,43 +47,45 @@ namespace Voyage.DataAccess.Repositories
                             RouteName = route.Name
                         });
 
-                    var ticketandtripandrouteinfo = tripandrouteinfo.Join(ticketinfo,
-                        tripandroute => tripandroute.TripId,
+                    var ticketAndTripAndRouteInfoToNullParameters = tripAndRouteInfoToNullParameters.Join(ticketInfoToNullParameters,
+                        tripAndRouteToNullParameters => tripAndRouteToNullParameters.TripId,
                         ticket => ticket.TripId,
-                        (tripandroute, ticket) => new
+                        (tripAndRouteToNullParameters, ticket) => new
                         {
-                            TripId = tripandroute.TripId,
+                            TripId = tripAndRouteToNullParameters.TripId,
                             PassengerId = ticket.PassengerId,
-                            RouteName = tripandroute.RouteName,
-                            TripDate = tripandroute.TripDate,
-                            Price = tripandroute.Price
+                            RouteName = tripAndRouteToNullParameters.RouteName,
+                            TripDate = tripAndRouteToNullParameters.TripDate,
+                            Price = tripAndRouteToNullParameters.Price
                         });
 
-                    var result = ticketandtripandrouteinfo.ProjectToType<TicketShortInfoResponse>();
+                    var resultToNullParameters = ticketAndTripAndRouteInfoToNullParameters.ProjectToType<TicketShortInfoResponse>();
 
-                    if (result is null)
+                    if (resultToNullParameters is null)
                     {
                         return null;
                     }
 
-                    return result.ToListAsync(cancellationtoket);
-                });
+                    return await resultToNullParameters.ToListAsync(cancellationtoken);
             }
 
             Func<TicketShortInfoResponse, bool> function = (request.PassengerId is null) ?
             (p => p.TripId == request.TripId) :
             (p => p.PassengerId == request.PassengerId);
 
-            var ticketinfo = context.Tickets.ProjectToType<TicketShortInfoResponse>().Where(function);
-            var tripinfo = context.Trips.ProjectToType<Trip>();
-            var routeinfo = context.Routes.ProjectToType<Route>();
+            var ticketInfoToNotNullParameters = context.Tickets
+                .Skip((page - PaginationConstants.PageStep) * PaginationConstants.PageSize)
+                .Take(PaginationConstants.PageSize)
+                .ProjectToType<TicketShortInfoResponse>();
+            var tripInfoToNotNullParameters = context.Trips.ProjectToType<Trip>();
+            var routeInfoToNotNullParameters = context.Routes.ProjectToType<Route>();
 
-            if (ticketinfo is null || tripinfo is null || routeinfo is null)
+            if (ticketInfoToNotNullParameters is null || tripInfoToNotNullParameters is null || routeInfoToNotNullParameters is null)
             {
                 return null;
             }
 
-            var tripandrouteinfo = tripinfo.Join(routeinfo,
+            var tripAndRouteInfoToNotNullParameters = tripInfoToNotNullParameters.Join(routeInfoToNotNullParameters,
                 trip => trip.RouteId,
                 route => route.Id,
                 (trip, route) => new
@@ -94,26 +96,26 @@ namespace Voyage.DataAccess.Repositories
                     RouteName = route.Name
                 });
 
-            var ticketandtripandrouteinfo = tripandrouteinfo.Join(ticketinfo,
-                tripandroute => tripandroute.TripId,
+            var ticketAndTripAndRouteInfoToNotNullParameters = tripAndRouteInfoToNotNullParameters.Join(ticketInfoToNotNullParameters,
+                tripAndRouteToNotNullParameters => tripAndRouteToNotNullParameters.TripId,
                 ticket => ticket.TripId,
-                (tripandroute, ticket) => new
+                (tripAndRouteToNotNullParameters, ticket) => new
                 {
-                    TripId = tripandroute.TripId,
+                    TripId = tripAndRouteToNotNullParameters.TripId,
                     PassengerId = ticket.PassengerId,
-                    RouteName = tripandroute.RouteName,
-                    TripDate = tripandroute.TripDate,
-                    Price = tripandroute.Price
+                    RouteName = tripAndRouteToNotNullParameters.RouteName,
+                    TripDate = tripAndRouteToNotNullParameters.TripDate,
+                    Price = tripAndRouteToNotNullParameters.Price
                 });
 
-            var result = ticketandtripandrouteinfo.ProjectToType<TicketShortInfoResponse>();
+            var resultToNotNullParameters = ticketAndTripAndRouteInfoToNotNullParameters.ProjectToType<TicketShortInfoResponse>();
 
-            if (result is null)
+            if (resultToNotNullParameters is null)
             {
                 return null;
             }
 
-            return result;
+            return await resultToNotNullParameters.ToListAsync(cancellationtoken);
         }
 
         public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)

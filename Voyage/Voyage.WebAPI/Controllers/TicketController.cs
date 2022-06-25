@@ -6,7 +6,7 @@ using Voyage.Common.ResponseModels;
 namespace Voyage.WebAPI.Controllers
 {
     /// <summary>
-    /// Provides ticket endpoinst.
+    /// Provides ticket endpoints.
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]

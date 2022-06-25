@@ -120,7 +120,7 @@ namespace Voyage.DataAccess.Repositories
 
         public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)
         {
-            if(request is null)
+            if (request is null)
             {
                 return null;
             }

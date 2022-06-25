@@ -29,7 +29,7 @@ namespace Voyage.WebAPI.Controllers
         /// <param name="id">Route id.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(RouteShortInfoResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(RouteDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> FindAsync(int id, CancellationToken cancellationToken)
@@ -43,7 +43,7 @@ namespace Voyage.WebAPI.Controllers
         /// <param name="name">Route name.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         [HttpGet("search")]
-        [ProducesResponseType(typeof(RouteShortInfoResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(RouteDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> FindByNameAsync([FromQuery] string name, CancellationToken cancellationToken)

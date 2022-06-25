@@ -9,8 +9,8 @@ namespace Voyage.Business.Services.Interfaces
 
         Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(int page, GetTicketsRequest request, CancellationToken cancellationtoken);
 
-        Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request);
+        Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request, CancellationToken cancellationtoken);
 
-        Task<bool> DeleteAsync(DeleteTicketRequest request);
+        Task<bool> DeleteAsync(DeleteTicketRequest request, CancellationToken cancellationtoken);
     }
 }

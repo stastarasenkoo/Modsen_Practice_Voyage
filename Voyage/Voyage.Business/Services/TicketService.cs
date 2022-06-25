@@ -23,16 +23,16 @@ namespace Voyage.Business.Services
             return await repository.GetTicketDetailsAsync(request);
         }
 
-        public async Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request)
+        public async Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request, CancellationToken cancellationtoken)
         {
-            var ticket = await repository.CreateAsync(request);
+            var ticket = await repository.CreateAsync(request, cancellationtoken);
 
             return ticket;
         }
 
-        public async Task<bool> DeleteAsync(DeleteTicketRequest request)
+        public async Task<bool> DeleteAsync(DeleteTicketRequest request, CancellationToken cancellationtoken)
         {
-            return await repository.DeleteAsync(request);
+            return await repository.DeleteAsync(request, cancellationtoken);
         }
     }
 }

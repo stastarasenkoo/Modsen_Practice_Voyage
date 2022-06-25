@@ -142,18 +142,18 @@ namespace Voyage.DataAccess.Repositories
             return result;
         }
 
-        public async Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request)
+        public async Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request, CancellationToken cancellationtoken)
         {
             var ticket = request.Adapt<Ticket>();
 
             ticket = context.Tickets.Add(ticket).Entity;
 
-            await context.SaveChangesAsync();
+            await context.SaveChangesAsync(cancellationtoken);
 
             return ticket.Adapt<TicketDetailsResponse>();
         }
 
-        public async Task<bool> DeleteAsync(DeleteTicketRequest request)
+        public async Task<bool> DeleteAsync(DeleteTicketRequest request, CancellationToken cancellationtoken)
         {
             var ticket = await context.Tickets.FindAsync(request.PassengerId,request.TripId);
             
@@ -164,7 +164,7 @@ namespace Voyage.DataAccess.Repositories
 
             var state = context.Tickets.Remove(ticket).State;
 
-            await context.SaveChangesAsync();
+            await context.SaveChangesAsync(cancellationtoken);
 
             return state == EntityState.Deleted;
         }

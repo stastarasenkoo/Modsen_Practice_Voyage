@@ -51,26 +51,28 @@ namespace Voyage.WebAPI.Controllers
         /// Creates ticket.
         /// </summary>
         /// <param name="request">Create ticket request information.</param>
+        /// <param name="cancellationtoken">Cancellation token</param>
         [HttpPost]
         [ProducesResponseType(typeof(TicketDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CreateAsync(CreateTicketRequest request)
+        public async Task<IActionResult> CreateAsync(CreateTicketRequest request, CancellationToken cancellationtoken)
         {
-            return Ok(await service.CreateAsync(request));
+            return Ok(await service.CreateAsync(request, cancellationtoken));
         }
 
         /// <summary>
         /// Deletes ticket by request.
         /// </summary>
         /// <param name="request">Ticket request to delete.</param>
+        /// <param name="cancellationtoken">Cancellation token</param>
         [HttpDelete]
         [ProducesResponseType(typeof(bool), StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeleteAsync([FromQuery] DeleteTicketRequest request)
+        public async Task<IActionResult> DeleteAsync([FromQuery] DeleteTicketRequest request, CancellationToken cancellationtoken)
         {
-            await service.DeleteAsync(request);
+            await service.DeleteAsync(request, cancellationtoken);
 
             return NoContent();
         }

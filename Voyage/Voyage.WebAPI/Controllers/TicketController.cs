@@ -30,9 +30,9 @@ namespace Voyage.WebAPI.Controllers
         [ProducesResponseType(typeof(IEnumerable<TicketShortInfoResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAsync([FromQuery] GetTicketsRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAsync([FromQuery] int page,[FromQuery] GetTicketsRequest request, CancellationToken cancellationToken)
         {
-            return Ok(await service.GetAsync(request, cancellationToken));
+            return Ok(await service.GetAsync(page, request, cancellationToken));
         }
 
         /// <summary>

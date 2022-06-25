@@ -1,5 +1,6 @@
 ﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
+using Voyage.Common.Constants;
 using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Entities;
@@ -17,13 +18,16 @@ namespace Voyage.DataAccess.Repositories
             this.context = context;
         }
 
-        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(GetTicketsRequest request, CancellationToken cancellationtoket)
+        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(int page, GetTicketsRequest request, CancellationToken cancellationtoket)
         {
+            page = page <= 0 ? PaginationConstants.StartPage : page;
+
             if (request.PassengerId is null && request.TripId is null)
             {
                 return await Task.Run(() =>
                 {
-                    var ticketinfo = context.Tickets.ProjectToType<TicketShortInfoResponse>();
+                    var ticketinfo = context.Tickets.Skip((page - PaginationConstants.PageStep) * PaginationConstants.PageSize)
+                .   Take(PaginationConstants.PageSize).ProjectToType<TicketShortInfoResponse>();
                     var tripinfo = context.Trips.ProjectToType<Trip>();
                     var routeinfo = context.Routes.ProjectToType<Route>();
 

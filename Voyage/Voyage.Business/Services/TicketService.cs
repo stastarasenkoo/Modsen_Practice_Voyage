@@ -13,9 +13,9 @@ namespace Voyage.Business.Services
             this.repository = repository;
         }
 
-        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(GetTicketsRequest request, CancellationToken cancellationtoket)
+        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(int page, GetTicketsRequest request, CancellationToken cancellationtoket)
         {
-            return await repository.GetAsync(request, cancellationtoket);
+            return await repository.GetAsync(page, request, cancellationtoket);
         }
 
         public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)

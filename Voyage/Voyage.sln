@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voyage.WebAPI", "Voyage.Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voyage.Dependencies", "Voyage.Dependencies\Voyage.Dependencies.csproj", "{4016520F-125C-45D7-8239-B351FCAC3FEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voyage.Common", "Voyage.Common\Voyage.Common.csproj", "{BE1144F8-773B-4B08-9923-F02DE50939A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voyage.Common", "Voyage.Common\Voyage.Common.csproj", "{BE1144F8-773B-4B08-9923-F02DE50939A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

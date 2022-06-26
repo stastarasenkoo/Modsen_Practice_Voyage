@@ -6,7 +6,7 @@ using Voyage.DataAccess.Entities;
 namespace Voyage.WebAPI.Controllers
 {
     /// <summary>
-    /// Provides transport endpoinst.
+    /// Provides account endpoinst.
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]

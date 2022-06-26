@@ -43,13 +43,20 @@ namespace Voyage.DataAccess.Helpers
                 {
                     ClientId="swagger",
                     AllowedGrantTypes= GrantTypes.ResourceOwnerPassword,
-                    ClientSecrets={
+                    ClientSecrets=
+                    {
                         new Secret("eb300de4-add9-42f4-a3ac-abd3c60f1919".Sha256())
                     },
-                    RedirectUris={ "https://localhost:5084" },
-                    AllowedScopes={ "Voyage",
+                    RedirectUris=
+                    { 
+                        "https://localhost:5084" 
+                    },
+                    AllowedScopes=
+                    {
+                    "Voyage",
                     IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile}
+                    IdentityServerConstants.StandardScopes.Profile
+                    }
                 }
             };
     }

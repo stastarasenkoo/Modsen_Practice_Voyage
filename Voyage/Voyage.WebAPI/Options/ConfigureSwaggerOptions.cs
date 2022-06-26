@@ -53,6 +53,8 @@ namespace Voyage.WebAPI.Options
                     new List<string>()
                 }
             });
+            
+            options.CustomSchemaIds(x => x.FullName);
         }
     }
 }

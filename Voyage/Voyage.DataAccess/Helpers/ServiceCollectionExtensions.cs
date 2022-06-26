@@ -12,7 +12,14 @@ namespace Voyage.DataAccess.Helpers
         public static IServiceCollection AddApplicationDbContext(this IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>()
-                .AddIdentity<AppUser, IdentityRole<int>>()
+                .AddIdentity<AppUser, IdentityRole<int>>(options =>
+                {
+                    options.Password.RequiredLength = 1;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireDigit = false;
+                })
                 .AddRoles<IdentityRole<int>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();

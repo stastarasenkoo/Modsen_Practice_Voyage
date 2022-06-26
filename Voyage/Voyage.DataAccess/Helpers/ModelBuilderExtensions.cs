@@ -9,25 +9,25 @@ namespace Voyage.DataAccess.Helpers
         public static void Seed(this ModelBuilder modelBuilder)
         {
 
-            var roles = new List<IdentityRole<int>>() 
+            var roles = new List<IdentityRole<int>>()
             {
-                new IdentityRole<int> 
+                new IdentityRole<int>
                 {
-                    Id=1, 
-                    Name = "Administrator", 
-                    NormalizedName = "ADMINISTRATOR" 
+                    Id = 1,
+                    Name = "Administrator",
+                    NormalizedName = "ADMINISTRATOR"
                 },
-                new IdentityRole<int> 
+                new IdentityRole<int>
                 {
-                    Id=2, 
-                    Name = "Driver", 
-                    NormalizedName = "DRIVER" 
+                    Id = 2,
+                    Name = "Driver",
+                    NormalizedName = "DRIVER"
                 },
-                new IdentityRole<int> 
+                new IdentityRole<int>
                 {
-                    Id=3, 
-                    Name = "Passenger", 
-                    NormalizedName = "PASSENGER" 
+                    Id = 3,
+                    Name = "Passenger",
+                    NormalizedName = "PASSENGER"
                 },
             };
             modelBuilder.Entity<IdentityRole<int>>().HasData(roles);

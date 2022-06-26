@@ -48,14 +48,14 @@ namespace Voyage.DataAccess.Helpers
                         new Secret("eb300de4-add9-42f4-a3ac-abd3c60f1919".Sha256())
                     },
                     RedirectUris=
-                    { 
-                        "https://localhost:5084" 
+                    {
+                        "https://localhost:5084"
                     },
                     AllowedScopes=
                     {
-                    "Voyage",
-                    IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile
+                        "Voyage",
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile
                     }
                 }
             };

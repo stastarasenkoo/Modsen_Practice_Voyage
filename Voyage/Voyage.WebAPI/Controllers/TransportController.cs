@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Voyage.Business.Services.Interfaces;
 using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
@@ -10,6 +11,7 @@ namespace Voyage.WebAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = "Bearer", Roles = "Administrator")]
     public class TransportController : ControllerBase
     {
         private readonly ITransportService service;

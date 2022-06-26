@@ -9,7 +9,7 @@ using Voyage.DataAccess.Repositories.Interfaces;
 
 namespace Voyage.DataAccess.Repositories
 {
-    internal class PassengerRepository : IPassengerRepository
+    public class PassengerRepository : IPassengerRepository
     {
         private readonly ApplicationDbContext context;
 

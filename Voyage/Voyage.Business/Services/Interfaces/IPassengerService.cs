@@ -1,9 +1,9 @@
 ﻿using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
 
-namespace Voyage.DataAccess.Repositories.Interfaces
+namespace Voyage.Business.Services.Interfaces
 {
-    public interface IPassengerRepository
+    public interface IPassengerService
     {
         Task<PassengerDetailsResponse?> GetByIdAsync(int id, CancellationToken cancellationToken);
 

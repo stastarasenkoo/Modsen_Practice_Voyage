@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Voyage.DataAccess.Infrastructure;
 
@@ -11,13 +12,14 @@ using Voyage.DataAccess.Infrastructure;
 namespace Voyage.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220623204011_AddSeedData")]
+    partial class AddSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.6")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -208,7 +210,6 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -235,7 +236,6 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SecondName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
@@ -308,9 +308,7 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Points")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("int");
 
                     b.HasKey("UserId");
 
@@ -335,7 +333,6 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("DestinationAddress")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -363,14 +360,8 @@ namespace Voyage.DataAccess.Migrations
                     b.Property<int>("PassengerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookedSeats")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("PuchaseDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
 
                     b.HasKey("TripId", "PassengerId");
 
@@ -425,7 +416,7 @@ namespace Voyage.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("ArrivalTime")
+                    b.Property<DateTime?>("ArrivalTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DepartureTime")
@@ -441,9 +432,6 @@ namespace Voyage.DataAccess.Migrations
                     b.Property<decimal>("FinalPrice")
                         .HasPrecision(6, 2)
                         .HasColumnType("decimal(6,2)");
-
-                    b.Property<int>("FreeSeats")
-                        .HasColumnType("int");
 
                     b.Property<int>("RouteId")
                         .HasColumnType("int");

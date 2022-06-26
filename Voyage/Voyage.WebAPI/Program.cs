@@ -53,14 +53,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options =>
     {
         options.OAuthClientId("swagger");
+
         options.OAuthClientSecret("eb300de4-add9-42f4-a3ac-abd3c60f1919");
     });
 }
+
 app.UseDeveloperExceptionPage();
+
 app.UseHttpsRedirection();
+
 app.UseIdentityServer();
+
 app.UseAuthentication();
+
 app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();

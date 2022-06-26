@@ -4,9 +4,9 @@
     {
         public string FirstName { get; set; } = null!;
 
-        public string SeconName { get; set; } = null!;
+        public string SecondName { get; set; } = null!;
 
-        public string? Thirdname { get; set; } 
+        public string? ThirdName { get; set; } 
 
         public string UserName { get; set; } = null!;
 

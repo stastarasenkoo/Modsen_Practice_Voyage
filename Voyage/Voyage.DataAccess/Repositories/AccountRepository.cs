@@ -23,10 +23,13 @@ namespace Voyage.DataAccess.Repositories
         public async Task<AppUser> RegisterAsync(RegisterModelRequest registerRequest, CancellationToken cancellationToken)
         {
             var user = registerRequest.Adapt<AppUser>();
+
             var result = await userManager.CreateAsync(user, registerRequest.Password);
+
             if (result.Succeeded)
             {
                 await userManager.AddToRoleAsync(user, "Passenger");
+
                 await signInManager.SignInAsync(user, false);
             }
 

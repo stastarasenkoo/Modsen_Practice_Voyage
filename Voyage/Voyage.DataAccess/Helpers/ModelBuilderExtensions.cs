@@ -17,7 +17,8 @@ namespace Voyage.DataAccess.Helpers
             modelBuilder.Entity<IdentityRole<int>>().HasData(roles);
 
             var users = new List<AppUser>() {
-                new AppUser {
+                new AppUser
+                {
                     Id = 1,
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = "HeadAdmin",
@@ -37,6 +38,5 @@ namespace Voyage.DataAccess.Helpers
             });
             modelBuilder.Entity<IdentityUserRole<int>>().HasData(userRoles);
         }
-
     }
 }

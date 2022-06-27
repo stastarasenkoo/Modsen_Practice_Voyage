@@ -20,6 +20,7 @@ namespace Voyage.Dependencies
         public static IServiceCollection AddBusinessLogic(this IServiceCollection services)
         {
             services.AddServices();
+            services.AddValidators();
 
             return services;
         }

@@ -55,21 +55,21 @@ namespace Voyage.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "74851e57-2c2b-433e-b604-bac85115cc03",
+                            ConcurrencyStamp = "205cf7cf-5698-4f5b-9317-bd474c3abba2",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "94a9a964-3993-4cb3-ad16-40ac8381e66b",
+                            ConcurrencyStamp = "ffd7d59d-1b78-43f6-8c35-416abeee9655",
                             Name = "Driver",
                             NormalizedName = "DRIVER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "0133335e-b9be-42cb-b350-2a3e879ad13a",
+                            ConcurrencyStamp = "777d5b9d-01d1-4619-ab96-d16769700708",
                             Name = "Passenger",
                             NormalizedName = "PASSENGER"
                         });
@@ -208,6 +208,7 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -234,6 +235,7 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SecondName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
@@ -271,13 +273,15 @@ namespace Voyage.DataAccess.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3f73ff48-b5f5-48de-b780-30a0a863afdb",
+                            ConcurrencyStamp = "974cea9a-024a-49aa-8f58-48af63569b58",
                             EmailConfirmed = false,
+                            FirstName = "AdminName",
                             LockoutEnabled = false,
                             NormalizedUserName = "HEADADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDls13vOEBjPC656KQfvtFQCoSjsBTTmxck5CSgVizWc1RBKySJHkRyRjdbd4SpazA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC6ZFC7lBds98cJXtAzL7XjwwVs/FRJ6N1e6BKO8eEbK+QPF6zPjWb9zv49BsBFXwQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "193b9a4e-2ce2-4415-a971-7ae07ce24b32",
+                            SecondName = "AdminSecondName",
+                            SecurityStamp = "9c0c3eb1-e426-4f62-9425-bf500e341a92",
                             TripsCount = 0,
                             TwoFactorEnabled = false,
                             UserName = "HeadAdmin"
@@ -306,7 +310,9 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Points")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.HasKey("UserId");
 
@@ -331,6 +337,7 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("DestinationAddress")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -420,7 +427,7 @@ namespace Voyage.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime?>("ArrivalTime")
+                    b.Property<DateTime>("ArrivalTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DepartureTime")

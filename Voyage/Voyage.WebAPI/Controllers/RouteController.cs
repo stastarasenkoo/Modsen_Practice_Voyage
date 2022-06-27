@@ -32,7 +32,7 @@ namespace Voyage.WebAPI.Controllers
         [ProducesResponseType(typeof(RouteShortInfoResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetByIdAsync(int id, CancellationToken cancellationToken)
+        public async Task<IActionResult> FindAsync(int id, CancellationToken cancellationToken)
         {
             return Ok(await service.FindAsync(id, cancellationToken));
         }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Voyage.Business.Services.Interfaces;
 using Voyage.Common.RequestModels;
@@ -8,11 +7,11 @@ using Voyage.Common.ResponseModels;
 namespace Voyage.WebAPI.Controllers
 {
     /// <summary>
-    /// Provides route endpoinst.
+    /// Provides driver endpoinst.
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = "Bearer"/*, Roles = "Administrator")*/]
+    [Authorize(AuthenticationSchemes = "Bearer", Roles = "Administrator")]
     public class DriverController : ControllerBase
     {
         private readonly IDriverService service;
@@ -20,7 +19,7 @@ namespace Voyage.WebAPI.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="DriverController"/> class.
         /// </summary>
-        /// <param name="service">Transport service.</param>
+        /// <param name="service">Driver service.</param>
         public DriverController(IDriverService service)
         {
             this.service = service;

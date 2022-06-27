@@ -15,12 +15,14 @@ namespace Voyage.DataAccess.Repositories
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly ApplicationDbContext context;
+
         public DriverRepository(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, ApplicationDbContext context)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.context = context;
         }
+
         public async Task<DriverDetailsResponse?> FindAsync(int id, CancellationToken cancellationToken)
         {
             return await context.Drivers
@@ -31,10 +33,10 @@ namespace Voyage.DataAccess.Repositories
         public async Task<IEnumerable<DriverDetailsResponse>> FindByNameAsync(string name, CancellationToken cancellationToken)
         {
             return await context.Drivers
-                          .Where(r => r.User.FirstName.Contains(name))
-                          .OrderBy(r => r.User.FirstName)
-                          .ProjectToType<DriverDetailsResponse>()
-                          .ToListAsync(cancellationToken);
+                .Where(r => r.User.FirstName.Contains(name))
+                .OrderBy(r => r.User.FirstName)
+                .ProjectToType<DriverDetailsResponse>()
+                .ToListAsync(cancellationToken);
         }
 
         public async Task<IEnumerable<DriverShortInfoResponse>> GetAsync(int page, CancellationToken cancellationToken)
@@ -115,7 +117,7 @@ namespace Voyage.DataAccess.Repositories
 
         public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken)
         {
-            var driver = await context.Drivers.FindAsync(new object[] { id }, cancellationToken);
+            var driver = context.Drivers.FirstOrDefault(u => u.UserId == id);
 
             if (driver is null)
             {
@@ -126,7 +128,7 @@ namespace Voyage.DataAccess.Repositories
 
             await context.SaveChangesAsync(cancellationToken);
 
-            var user = await context.Users.FindAsync(new object[] { id }, cancellationToken);
+            var user = context.Users.FirstOrDefault(u => u.Id == id);
 
             if (user is null)
             {

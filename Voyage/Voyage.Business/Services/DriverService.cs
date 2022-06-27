@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Voyage.Business.Services.Interfaces;
+﻿using Voyage.Business.Services.Interfaces;
 using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Repositories.Interfaces;

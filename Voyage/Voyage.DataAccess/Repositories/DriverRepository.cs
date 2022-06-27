@@ -90,7 +90,7 @@ namespace Voyage.DataAccess.Repositories
                 return request.Adapt<DriverDetailsResponse>();
             }
 
-            driver.DriverCategory = (Entities.Enums.DriverCategoryType)request.DriverCategory;
+            driver.DriverCategory = (Entities.Types.DriverCategoryType)request.DriverCategory;
             driver.DrivingExperience = request.DrivingExperience;
 
             var user = context.Users.AsNoTracking().FirstOrDefault(u => u.Id == request.UserId);

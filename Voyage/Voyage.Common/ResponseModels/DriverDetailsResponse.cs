@@ -1,4 +1,4 @@
-﻿using Voyage.Common.Enums;
+﻿using Voyage.Common.Types;
 
 namespace Voyage.Common.ResponseModels
 {

@@ -1,4 +1,4 @@
-﻿namespace Voyage.DataAccess.Entities.Enums
+﻿namespace Voyage.Common.Types
 {
     [Flags]
     public enum DriverCategoryType

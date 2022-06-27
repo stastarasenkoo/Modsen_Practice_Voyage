@@ -22,29 +22,29 @@ namespace Voyage.Business.Services
             this.updateRequestValidator = updateRequestValidator;
         }
 
-        public async Task<TransportDetailsResponse> CreateAsync(CreateTransportRequest request)
+        public async Task<TransportDetailsResponse?> FindAsync(int id, CancellationToken cancellationToken)
+        {
+            
+            
+            var transport = await repository.FindAsync(id, cancellationToken);
+
+            return transport;
+        }
+
+        public async Task<IEnumerable<TransportShortInfoResponse>> GetAsync(int page, CancellationToken cancellationToken)
+        {
+            return await repository.GetAsync(page, cancellationToken);
+        }
+
+        public async Task<TransportDetailsResponse> CreateAsync(CreateTransportRequest request, CancellationToken cancellationToken)
         {
             await createRequestValidator.ValidateAsync(request);
-            var transport = await repository.CreateAsync(request);
+            var transport = await repository.CreateAsync(request, cancellationToken);
 
             return transport;
         }
 
-        public async Task<bool> DeleteAsync(int id)
-        {
-            var isDeleted = await repository.DeleteAsync(id);
-
-            return isDeleted;
-        }
-
-        public async Task<TransportDetailsResponse?> FindAsync(int id)
-        {
-            var transport = await repository.FindAsync(id);
-
-            return transport;
-        }
-
-        public async Task<IEnumerable<TransportShortInfoResponse>> GetAsync()
+        public async Task<TransportDetailsResponse?> UpdateAsync(UpdateTransportRequest request, CancellationToken cancellationToken)
         {
             var transports = await repository.GetAsync();
 
@@ -54,9 +54,16 @@ namespace Voyage.Business.Services
         public async Task<TransportDetailsResponse?> UpdateAsync(UpdateTransportRequest request)
         {
             await updateRequestValidator.ValidateAsync(request);
-            var transport = await repository.UpdateAsync(request);
+            var transport = await repository.UpdateAsync(request, cancellationToken);
 
             return transport;
+        }
+
+        public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken)
+        {
+            var isDeleted = await repository.DeleteAsync(id, cancellationToken);
+
+            return isDeleted;
         }
     }
 }

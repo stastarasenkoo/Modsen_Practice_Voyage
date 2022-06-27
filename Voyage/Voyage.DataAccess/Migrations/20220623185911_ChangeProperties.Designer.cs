@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Voyage.DataAccess.Infrastructure;
 
@@ -11,9 +12,10 @@ using Voyage.DataAccess.Infrastructure;
 namespace Voyage.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220623185911_ChangeProperties")]
+    partial class ChangeProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,29 +52,6 @@ namespace Voyage.DataAccess.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ConcurrencyStamp = "205cf7cf-5698-4f5b-9317-bd474c3abba2",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ConcurrencyStamp = "ffd7d59d-1b78-43f6-8c35-416abeee9655",
-                            Name = "Driver",
-                            NormalizedName = "DRIVER"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ConcurrencyStamp = "777d5b9d-01d1-4619-ab96-d16769700708",
-                            Name = "Passenger",
-                            NormalizedName = "PASSENGER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -157,13 +136,6 @@ namespace Voyage.DataAccess.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            RoleId = 1
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -267,25 +239,6 @@ namespace Voyage.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "974cea9a-024a-49aa-8f58-48af63569b58",
-                            EmailConfirmed = false,
-                            FirstName = "AdminName",
-                            LockoutEnabled = false,
-                            NormalizedUserName = "HEADADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEC6ZFC7lBds98cJXtAzL7XjwwVs/FRJ6N1e6BKO8eEbK+QPF6zPjWb9zv49BsBFXwQ==",
-                            PhoneNumberConfirmed = false,
-                            SecondName = "AdminSecondName",
-                            SecurityStamp = "9c0c3eb1-e426-4f62-9425-bf500e341a92",
-                            TripsCount = 0,
-                            TwoFactorEnabled = false,
-                            UserName = "HeadAdmin"
-                        });
                 });
 
             modelBuilder.Entity("Voyage.DataAccess.Entities.Driver", b =>

@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Voyage.Business\Voyage.Business.csproj" />
     <ProjectReference Include="..\Voyage.DataAccess\Voyage.DataAccess.csproj" />
+    <ProjectReference Include="..\Voyage.WebAPI\Voyage.WebAPI.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using Voyage.Common.RequestModels;
+﻿using Voyage.Common.Enums;
+using Voyage.Common.RequestModels;
 
 namespace Voyage.Tests.Transport.TestData
 {
@@ -8,8 +9,17 @@ namespace Voyage.Tests.Transport.TestData
             new CreateTransportRequest
             {
                 Number = "number",
-                Color = Common.Enums.Color.White,
+                Color = Color.White,
                 SeatsCount = 1,
+            };
+
+        public static UpdateTransportRequest Update =>
+            new UpdateTransportRequest()
+            {
+                Id = 1,
+                Number = "number",
+                Color = Color.White,
+                PriceRate = 1.2,
             };
     }
 }

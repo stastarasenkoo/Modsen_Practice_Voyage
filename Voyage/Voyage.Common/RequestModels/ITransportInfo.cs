@@ -2,11 +2,9 @@
 
 namespace Voyage.Common.RequestModels
 {
-    public class UpdateTransportRequest : ITransportInfo
+    public interface ITransportInfo
     {
-        public int Id { get; set; }
-
-        public string Number { get; set; } = null!;
+        public string Number { get; set; }
 
         public Color Color { get; set; }
 

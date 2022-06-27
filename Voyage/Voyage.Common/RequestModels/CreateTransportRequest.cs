@@ -2,7 +2,7 @@
 
 namespace Voyage.Common.RequestModels
 {
-    public class CreateTransportRequest
+    public class CreateTransportRequest : ITransportInfo
     {
         public string Number { get; set; } = null!;
 

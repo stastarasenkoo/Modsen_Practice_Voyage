@@ -1,10 +1,9 @@
-﻿using Voyage.Common.Dtos;
-using Voyage.Common.RequestModels;
+﻿using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
 
-namespace Voyage.DataAccess.Repositories.Interfaces
+namespace Voyage.Business.Services.Interfaces
 {
-    public interface ITicketRepository
+    public interface ITicketService
     {
         Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request);
 

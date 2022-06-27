@@ -15,6 +15,7 @@ namespace Voyage.Business.Helpers
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
+            services.AddScoped<ITicketService, TicketService>();
             services.AddScoped<ITransportService, TransportService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IRouteService, RouteService>();

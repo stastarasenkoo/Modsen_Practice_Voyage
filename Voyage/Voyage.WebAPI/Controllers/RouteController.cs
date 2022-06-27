@@ -6,7 +6,7 @@ using Voyage.Common.ResponseModels;
 namespace Voyage.WebAPI.Controllers
 {
     /// <summary>
-    /// Provides route endpoinst.
+    /// Provides route endpoints.
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -17,7 +17,7 @@ namespace Voyage.WebAPI.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="RouteController"/> class.
         /// </summary>
-        /// <param name="service">Transport service.</param>
+        /// <param name="service">Route service.</param>
         public RouteController(IRouteService service)
         {
             this.service = service;
@@ -29,10 +29,10 @@ namespace Voyage.WebAPI.Controllers
         /// <param name="id">Route id.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(RouteShortInfoResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(RouteDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetByIdAsync(int id, CancellationToken cancellationToken)
+        public async Task<IActionResult> FindAsync(int id, CancellationToken cancellationToken)
         {
             return Ok(await service.FindAsync(id, cancellationToken));
         }
@@ -43,7 +43,7 @@ namespace Voyage.WebAPI.Controllers
         /// <param name="name">Route name.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         [HttpGet("search")]
-        [ProducesResponseType(typeof(RouteShortInfoResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(RouteDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> FindByNameAsync([FromQuery] string name, CancellationToken cancellationToken)

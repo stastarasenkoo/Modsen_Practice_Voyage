@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Voyage.DataAccess.Entities;
 
@@ -8,7 +9,12 @@ namespace Voyage.DataAccess.Infrastructure.EntityConfigs
     {
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
-            builder.Property(u => u.TripsCount).HasDefaultValue(0);
+            builder.Property(u => u.TripsCount)
+                .HasDefaultValue(0);
+            builder.Property(b => b.FirstName)
+                .IsRequired();
+            builder.Property(b => b.SecondName)
+                .IsRequired();
         }
     }
 }

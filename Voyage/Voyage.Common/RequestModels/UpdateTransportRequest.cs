@@ -1,8 +1,8 @@
-﻿using Voyage.Common.Enums;
+﻿using Voyage.Common.Types;
 
 namespace Voyage.Common.RequestModels
 {
-    public class UpdateTransportRequest
+    public class UpdateTransportRequest : ITransportInfo
     {
         public int Id { get; set; }
 

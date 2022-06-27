@@ -50,6 +50,29 @@ namespace Voyage.DataAccess.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ConcurrencyStamp = "205cf7cf-5698-4f5b-9317-bd474c3abba2",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ConcurrencyStamp = "ffd7d59d-1b78-43f6-8c35-416abeee9655",
+                            Name = "Driver",
+                            NormalizedName = "DRIVER"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ConcurrencyStamp = "777d5b9d-01d1-4619-ab96-d16769700708",
+                            Name = "Passenger",
+                            NormalizedName = "PASSENGER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -134,6 +157,13 @@ namespace Voyage.DataAccess.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -178,6 +208,7 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -204,6 +235,7 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SecondName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
@@ -235,6 +267,25 @@ namespace Voyage.DataAccess.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "974cea9a-024a-49aa-8f58-48af63569b58",
+                            EmailConfirmed = false,
+                            FirstName = "AdminName",
+                            LockoutEnabled = false,
+                            NormalizedUserName = "HEADADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC6ZFC7lBds98cJXtAzL7XjwwVs/FRJ6N1e6BKO8eEbK+QPF6zPjWb9zv49BsBFXwQ==",
+                            PhoneNumberConfirmed = false,
+                            SecondName = "AdminSecondName",
+                            SecurityStamp = "9c0c3eb1-e426-4f62-9425-bf500e341a92",
+                            TripsCount = 0,
+                            TwoFactorEnabled = false,
+                            UserName = "HeadAdmin"
+                        });
                 });
 
             modelBuilder.Entity("Voyage.DataAccess.Entities.Driver", b =>
@@ -259,7 +310,9 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Points")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.HasKey("UserId");
 
@@ -284,6 +337,7 @@ namespace Voyage.DataAccess.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("DestinationAddress")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -373,7 +427,7 @@ namespace Voyage.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime?>("ArrivalTime")
+                    b.Property<DateTime>("ArrivalTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DepartureTime")

@@ -9,8 +9,15 @@ namespace Voyage.DataAccess.Infrastructure.EntityConfigs
         public void Configure(EntityTypeBuilder<Ticket> builder)
         {
             builder.HasKey(t => new { t.TripId, t.PassengerId });
-            builder.HasOne(t => t.Passenger).WithMany(p => p.Tickets)
+            builder.HasOne(t => t.Passenger)
+                .WithMany(p => p.Tickets)
                 .OnDelete(DeleteBehavior.Restrict);
+            builder.Property(t => t.Status)
+                .IsRequired();
+            builder.Property(t => t.BookedSeats)
+                .IsRequired();
+            builder.Property(t => t.PuchaseDate)
+                .IsRequired();
         }
     }
 }

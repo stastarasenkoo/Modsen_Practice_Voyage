@@ -1,4 +1,5 @@
-﻿using Voyage.Business.Services.Interfaces;
+﻿using FluentValidation;
+using Voyage.Business.Services.Interfaces;
 using Voyage.Common.RequestModels;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Repositories.Interfaces;
@@ -8,41 +9,52 @@ namespace Voyage.Business.Services
     internal class TransportService : ITransportService
     {
         private readonly ITransportRepository repository;
+        private readonly IValidator<CreateTransportRequest> createRequestValidator;
+        private readonly IValidator<UpdateTransportRequest> updateRequestValidator;
 
-        public TransportService(ITransportRepository repository)
+        public TransportService(
+            ITransportRepository repository,
+            IValidator<CreateTransportRequest> createRequestValidator,
+            IValidator<UpdateTransportRequest> updateRequestValidator)
         {
             this.repository = repository;
+            this.createRequestValidator = createRequestValidator;
+            this.updateRequestValidator = updateRequestValidator;
         }
 
-        public async Task<TransportDetailsResponse> CreateAsync(CreateTransportRequest request)
+        public async Task<TransportDetailsResponse?> FindAsync(int id, CancellationToken cancellationToken)
         {
-            var transport = await repository.CreateAsync(request);
+            var transport = await repository.FindAsync(id, cancellationToken);
 
             return transport;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<IEnumerable<TransportShortInfoResponse>> GetAsync(int page, CancellationToken cancellationToken)
         {
-            return await repository.DeleteAsync(id);
+            return await repository.GetAsync(page, cancellationToken);
         }
 
-        public async Task<TransportDetailsResponse?> FindAsync(int id)
+        public async Task<TransportDetailsResponse> CreateAsync(CreateTransportRequest request, CancellationToken cancellationToken)
         {
-            var transport = await repository.FindAsync(id);
+            await createRequestValidator.ValidateAsync(request);
+            var transport = await repository.CreateAsync(request, cancellationToken);
 
             return transport;
         }
 
-        public async Task<IEnumerable<TransportShortInfoResponse>> GetAsync()
+        public async Task<TransportDetailsResponse?> UpdateAsync(UpdateTransportRequest request, CancellationToken cancellationToken)
         {
-            return await repository.GetAsync();
-        }
-
-        public async Task<TransportDetailsResponse?> UpdateAsync(UpdateTransportRequest request)
-        {
-            var transport = await repository.UpdateAsync(request);
+            await updateRequestValidator.ValidateAsync(request);
+            var transport = await repository.UpdateAsync(request, cancellationToken);
 
             return transport;
+        }
+
+        public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken)
+        {
+            var isDeleted = await repository.DeleteAsync(id, cancellationToken);
+
+            return isDeleted;
         }
     }
 }

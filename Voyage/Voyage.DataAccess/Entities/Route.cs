@@ -8,7 +8,7 @@
 
         public string DepartureAddress { get; set; } = null!;
 
-        public string? DestinationAddress { get; set; }
+        public string DestinationAddress { get; set; } = null!;
 
         public decimal BasePrice { get; set; }
 

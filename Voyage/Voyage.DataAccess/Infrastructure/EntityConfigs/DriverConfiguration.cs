@@ -9,6 +9,10 @@ namespace Voyage.DataAccess.Infrastructure.EntityConfigs
         public void Configure(EntityTypeBuilder<Driver> builder)
         {
             builder.HasKey(d => d.UserId);
+            builder.Property(b => b.DrivingExperience)
+                .IsRequired();
+            builder.Property(b => b.DriverCategory)
+                .IsRequired();
         }
     }
 }

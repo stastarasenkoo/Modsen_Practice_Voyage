@@ -44,17 +44,10 @@ namespace Voyage.Business.Services
             return transport;
         }
 
-        public async Task<TransportDetailsResponse?> UpdateAsync(UpdateTransportRequest request, CancellationToken cancellationToken)
-        {
-            var transports = await repository.GetAsync();
-
-            return transports;
-        }
-
-        public async Task<TransportDetailsResponse?> UpdateAsync(UpdateTransportRequest request)
+        public async Task<TransportDetailsResponse?> UpdateAsync(UpdateTransportRequest request, CancellationToken token)
         {
             await updateRequestValidator.ValidateAsync(request);
-            var transport = await repository.UpdateAsync(request, cancellationToken);
+            var transport = await repository.UpdateAsync(request, token);
 
             return transport;
         }

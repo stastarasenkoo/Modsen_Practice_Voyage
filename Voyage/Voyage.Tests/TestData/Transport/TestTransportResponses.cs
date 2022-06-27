@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Voyage.Common.Enums;
+using Voyage.Common.Types;
 using Voyage.Common.ResponseModels;
 
 namespace Voyage.Tests.TestData.Transport

@@ -1,4 +1,4 @@
-﻿using Voyage.Common.Enums;
+﻿using Voyage.Common.Types;
 using Voyage.Common.RequestModels;
 
 namespace Voyage.Tests.Transport.TestData

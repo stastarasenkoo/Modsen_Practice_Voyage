@@ -6,7 +6,7 @@ using Voyage.Common.ResponseModels;
 namespace Voyage.WebAPI.Controllers
 {
     /// <summary>
-    /// Provides route endpoinst.
+    /// Provides route endpoints.
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -17,7 +17,7 @@ namespace Voyage.WebAPI.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="RouteController"/> class.
         /// </summary>
-        /// <param name="service">Transport service.</param>
+        /// <param name="service">Route service.</param>
         public RouteController(IRouteService service)
         {
             this.service = service;

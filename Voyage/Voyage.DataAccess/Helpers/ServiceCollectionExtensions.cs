@@ -32,6 +32,9 @@ namespace Voyage.DataAccess.Helpers
             services.AddScoped<ITransportRepository, TransportRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IRouteRepository, RouteRepository>();
+
+            services.AddScoped<IPassengerRepository, PassengerRepository>();
+
             services.AddScoped<IDriverRepository, DriverRepository>();
 
             return services;

@@ -18,6 +18,9 @@ namespace Voyage.Business.Helpers
             services.AddScoped<ITransportService, TransportService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IRouteService, RouteService>();
+
+            services.AddScoped<IPassengerService, PassengerService>();
+
             services.AddScoped<IDriverService, DriverService>();
 
             return services;

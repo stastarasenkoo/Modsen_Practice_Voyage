@@ -1,7 +1,7 @@
 ﻿using Voyage.Common.Types;
 using Voyage.Common.RequestModels;
 
-namespace Voyage.Tests.Transport.TestData
+namespace Voyage.Tests.TestData.Transport
 {
     public static class TestTransportRequests
     {

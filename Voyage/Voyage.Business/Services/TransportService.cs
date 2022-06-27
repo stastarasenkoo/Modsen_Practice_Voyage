@@ -24,8 +24,6 @@ namespace Voyage.Business.Services
 
         public async Task<TransportDetailsResponse?> FindAsync(int id, CancellationToken cancellationToken)
         {
-            
-            
             var transport = await repository.FindAsync(id, cancellationToken);
 
             return transport;

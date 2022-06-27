@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using Voyage.Business.Services.Interfaces;
 using Voyage.Common.ResponseModels;
 using Voyage.Tests.TestData.Transport;
-using Voyage.Tests.Transport.TestData;
 using Voyage.WebAPI.Controllers;
 
 namespace Voyage.Tests.Controllers

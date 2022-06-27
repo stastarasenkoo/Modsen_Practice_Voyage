@@ -9,7 +9,6 @@ using Voyage.Business.Services;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Repositories.Interfaces;
 using Voyage.Tests.TestData.Transport;
-using Voyage.Tests.Transport.TestData;
 
 namespace Voyage.Tests.Services
 {

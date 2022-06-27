@@ -21,7 +21,7 @@ namespace Voyage.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecondName", "SecurityStamp", "ThirdName", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "3f73ff48-b5f5-48de-b780-30a0a863afdb", null, false, null, false, null, null, "HEADADMIN", "AQAAAAEAACcQAAAAEDls13vOEBjPC656KQfvtFQCoSjsBTTmxck5CSgVizWc1RBKySJHkRyRjdbd4SpazA==", null, false, null, "193b9a4e-2ce2-4415-a971-7ae07ce24b32", null, false, "HeadAdmin" });
+                values: new object[] { 1, 0, "3f73ff48-b5f5-48de-b780-30a0a863afdb", null, false, "qweqweqwe", false, null, null, "HEADADMIN", "AQAAAAEAACcQAAAAEDls13vOEBjPC656KQfvtFQCoSjsBTTmxck5CSgVizWc1RBKySJHkRyRjdbd4SpazA==", null, false, "admin", "193b9a4e-2ce2-4415-a971-7ae07ce24b32", null, false, "HeadAdmin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

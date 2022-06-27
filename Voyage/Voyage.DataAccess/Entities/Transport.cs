@@ -1,4 +1,4 @@
-﻿using Voyage.DataAccess.Entities.Enums;
+﻿using Voyage.DataAccess.Entities.Types;
 
 namespace Voyage.DataAccess.Entities
 {
@@ -10,7 +10,7 @@ namespace Voyage.DataAccess.Entities
 
         public int SeatsCount { get; set; }
 
-        public Color Color { get; set; }
+        public ColorType Color { get; set; }
 
         public string Mark { get; set; } = null!;
 

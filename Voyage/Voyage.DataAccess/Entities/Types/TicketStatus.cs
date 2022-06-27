@@ -1,4 +1,4 @@
-﻿namespace Voyage.DataAccess.Entities.Enums
+﻿namespace Voyage.DataAccess.Entities.Types
 {
     public enum TicketStatus
     {

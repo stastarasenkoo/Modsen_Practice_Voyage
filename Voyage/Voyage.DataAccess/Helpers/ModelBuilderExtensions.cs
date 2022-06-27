@@ -36,6 +36,8 @@ namespace Voyage.DataAccess.Helpers
                 new AppUser
                 {
                     Id = 1,
+                    FirstName = "AdminName",
+                    SecondName = "AdminSecondName",
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = "HeadAdmin",
                     NormalizedUserName = "HEADADMIN",

@@ -14,35 +14,35 @@ namespace Voyage.Business.Services
             this.repository = repository;
         }
 
-        public async Task<TransportDetailsResponse> CreateAsync(CreateTransportRequest request)
+        public async Task<TransportDetailsResponse?> FindAsync(int id, CancellationToken cancellationToken)
         {
-            var transport = await repository.CreateAsync(request);
+            var transport = await repository.FindAsync(id, cancellationToken);
 
             return transport;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<IEnumerable<TransportShortInfoResponse>> GetAsync(int page, CancellationToken cancellationToken)
         {
-            return await repository.DeleteAsync(id);
+            return await repository.GetAsync(page, cancellationToken);
         }
 
-        public async Task<TransportDetailsResponse?> FindAsync(int id)
+        public async Task<TransportDetailsResponse> CreateAsync(CreateTransportRequest request, CancellationToken cancellationToken)
         {
-            var transport = await repository.FindAsync(id);
+            var transport = await repository.CreateAsync(request, cancellationToken);
 
             return transport;
         }
 
-        public async Task<IEnumerable<TransportShortInfoResponse>> GetAsync()
+        public async Task<TransportDetailsResponse?> UpdateAsync(UpdateTransportRequest request, CancellationToken cancellationToken)
         {
-            return await repository.GetAsync();
-        }
-
-        public async Task<TransportDetailsResponse?> UpdateAsync(UpdateTransportRequest request)
-        {
-            var transport = await repository.UpdateAsync(request);
+            var transport = await repository.UpdateAsync(request, cancellationToken);
 
             return transport;
+        }
+
+        public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken)
+        {
+            return await repository.DeleteAsync(id, cancellationToken);
         }
     }
 }

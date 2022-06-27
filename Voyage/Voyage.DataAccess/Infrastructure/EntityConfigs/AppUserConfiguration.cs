@@ -9,7 +9,12 @@ namespace Voyage.DataAccess.Infrastructure.EntityConfigs
     {
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
-            builder.Property(u => u.TripsCount).HasDefaultValue(0);
+            builder.Property(u => u.TripsCount)
+                .HasDefaultValue(0);
+            builder.Property(b => b.FirstName)
+                .IsRequired();
+            builder.Property(b => b.SecondName)
+                .IsRequired();
         }
     }
 }

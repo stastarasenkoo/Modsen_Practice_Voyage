@@ -12,7 +12,7 @@
 
         public DateTime DepartureTime { get; set; }
 
-        public DateTime? ArrivalTime { get; set; }
+        public DateTime ArrivalTime { get; set; }
 
         public decimal FinalPrice { get; set; }
 

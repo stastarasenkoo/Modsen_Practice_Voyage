@@ -31,14 +31,13 @@ namespace Voyage.DataAccess.Infrastructure
            ) : base(options)
         {
             this.databaseConfigs = databaseConfigs.Value;
-            Database.SetConnectionString(databaseConfigs.Value.ConnectionString);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
                 .UseLazyLoadingProxies()
-                .UseSqlServer();
+                .UseSqlServer(databaseConfigs.ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -46,8 +46,7 @@ namespace Voyage.Business.Helpers
         {
             services.AddFluentValidationAutoValidation();
 
-            services.AddScoped<IValidator<CreateTransportRequest>, CreateTransportRequestValidator>();
-            services.AddScoped<IValidator<UpdateTransportRequest>, UpdateTransportRequestValidator>();
+            services.AddValidatorsFromAssembly(typeof(ServiceCollectionExtensions).Assembly);
 
             return services;
         }

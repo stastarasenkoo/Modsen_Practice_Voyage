@@ -42,10 +42,10 @@ namespace Voyage.Business.Services
             return transport;
         }
 
-        public async Task<TransportDetailsResponse?> UpdateAsync(UpdateTransportRequest request, CancellationToken token)
+        public async Task<TransportDetailsResponse?> UpdateAsync(UpdateTransportRequest request, CancellationToken cancellationToken)
         {
             await updateRequestValidator.ValidateAsync(request);
-            var transport = await repository.UpdateAsync(request, token);
+            var transport = await repository.UpdateAsync(request, cancellationToken);
 
             return transport;
         }

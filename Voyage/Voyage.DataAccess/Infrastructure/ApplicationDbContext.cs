@@ -32,6 +32,8 @@ namespace Voyage.DataAccess.Infrastructure
         {
             this.databaseConfigs = databaseConfigs.Value;
             Database.SetConnectionString(databaseConfigs.Value.ConnectionString);
+            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

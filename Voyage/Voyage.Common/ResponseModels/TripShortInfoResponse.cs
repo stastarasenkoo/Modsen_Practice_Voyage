@@ -2,7 +2,7 @@
 {
     public class TripShortInfoResponse
     {
-        public string RouteName { get; set; } = null!;
+        public int Id { get; set; }
 
         public DateTime DepartureTime { get; set; }
     }

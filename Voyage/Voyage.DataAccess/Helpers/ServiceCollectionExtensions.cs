@@ -38,6 +38,8 @@ namespace Voyage.DataAccess.Helpers
 
             services.AddScoped<IDriverRepository, DriverRepository>();
 
+            services.AddScoped<ITripRepository, TripRepository>();
+
             return services;
         }
     }

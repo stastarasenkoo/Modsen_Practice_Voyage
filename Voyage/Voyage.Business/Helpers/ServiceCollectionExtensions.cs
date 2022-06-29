@@ -24,6 +24,8 @@ namespace Voyage.Business.Helpers
 
             services.AddScoped<IDriverService, DriverService>();
 
+            services.AddScoped<ITripService, TripService>();
+
             return services;
         }
 

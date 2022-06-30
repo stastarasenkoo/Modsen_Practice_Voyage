@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="TestData\Account\" />
-    <Folder Include="TestData\Driver\" />
   </ItemGroup>
 
 </Project>

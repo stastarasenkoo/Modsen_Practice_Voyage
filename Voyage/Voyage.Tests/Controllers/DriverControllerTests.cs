@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Moq.AutoMock;
 using NUnit.Framework;
@@ -33,7 +34,7 @@ namespace Voyage.Tests.Controllers
 
             // Assert
             mocker.Verify<IDriverService>(x => x.CreateAsync(request, CancellationToken.None), Times.Once);
-            result.Should().BeEquivalentTo(response);
+            result.Should().BeOfType<OkObjectResult>();
         }
 
         [Test]
@@ -54,6 +55,7 @@ namespace Voyage.Tests.Controllers
 
             // Assert
             mocker.Verify<IDriverService>(x => x.DeleteAsync(id, CancellationToken.None), Times.Once);
+            result.Should().BeOfType<NoContentResult>();
         }
 
         [Test]
@@ -74,7 +76,7 @@ namespace Voyage.Tests.Controllers
 
             // Assert
             mocker.Verify<IDriverService>(x => x.GetAsync(page, CancellationToken.None), Times.Once);
-            result.Should().BeEquivalentTo(response);
+            result.Should().BeOfType<OkObjectResult>();
         }
 
         [Test]
@@ -95,7 +97,7 @@ namespace Voyage.Tests.Controllers
 
             // Assert
             mocker.Verify<IDriverService>(x => x.UpdateAsync(request, CancellationToken.None), Times.Once);
-            result.Should().BeEquivalentTo(response);
+            result.Should().BeOfType<OkObjectResult>();
         }
     }
 }

@@ -9,11 +9,12 @@
 
   <ItemGroup>
     <Compile Remove="TestData\Account\**" />
-    <Compile Remove="TestData\Driver\**" />
     <EmbeddedResource Remove="TestData\Account\**" />
-    <EmbeddedResource Remove="TestData\Driver\**" />
     <None Remove="TestData\Account\**" />
-    <None Remove="TestData\Driver\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="TestData\Account\TestAccountRequests.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,10 +31,6 @@
     <ProjectReference Include="..\Voyage.Business\Voyage.Business.csproj" />
     <ProjectReference Include="..\Voyage.DataAccess\Voyage.DataAccess.csproj" />
     <ProjectReference Include="..\Voyage.WebAPI\Voyage.WebAPI.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TestData\Account\" />
   </ItemGroup>
 
 

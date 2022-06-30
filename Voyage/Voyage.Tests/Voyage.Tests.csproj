@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TestData\Account\**" />
+    <EmbeddedResource Remove="TestData\Account\**" />
+    <None Remove="TestData\Account\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="TestData\Account\TestAccountRequests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="Moq" Version="4.18.1" />
@@ -22,5 +32,6 @@
     <ProjectReference Include="..\Voyage.DataAccess\Voyage.DataAccess.csproj" />
     <ProjectReference Include="..\Voyage.WebAPI\Voyage.WebAPI.csproj" />
   </ItemGroup>
+
 
 </Project>

@@ -15,8 +15,8 @@ namespace Voyage.Tests.TestData.Tickets
                 TripId = 1,
                 TripShortInfo = new TripShortInfoResponse()
                 {
+                    Id = 1,
                     DepartureTime = DateTime.Now,
-                    RouteName = "Route",
                 }
             };
 

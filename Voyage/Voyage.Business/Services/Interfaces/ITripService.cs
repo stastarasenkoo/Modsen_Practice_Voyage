@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Voyage.Common.RequestModels;
+﻿using Voyage.Common.RequestModels.Trip;
 using Voyage.Common.ResponseModels;
 
 namespace Voyage.Business.Services.Interfaces

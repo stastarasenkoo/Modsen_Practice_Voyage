@@ -1,14 +1,12 @@
-﻿namespace Voyage.Common.RequestModels
+﻿namespace Voyage.Common.RequestModels.Route
 {
-    public class UpdateRouteRequest
+    public class CreateRouteRequest : IRouteInfo
     {
-        public int Id { get; set; }
-
         public string Name { get; set; } = null!;
 
         public string DepartureAddress { get; set; } = null!;
 
-        public string? DestinationAddress { get; set; }
+        public string DestinationAddress { get; set; } = null!;
 
         public decimal BasePrice { get; set; }
 

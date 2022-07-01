@@ -1,6 +1,6 @@
-﻿namespace Voyage.Common.RequestModels
+﻿namespace Voyage.Common.RequestModels.Trip
 {
-    public class UpdateTripRequest
+    public class UpdateTripRequest : ITripInfo
     {
         public int Id { get; set; }
 

@@ -1,12 +1,12 @@
-﻿namespace Voyage.Common.RequestModels
+﻿namespace Voyage.Common.RequestModels.Account
 {
-    public class RegisterModelRequest
+    public class SignUpRequestModel
     {
         public string FirstName { get; set; } = null!;
 
         public string SecondName { get; set; } = null!;
 
-        public string? ThirdName { get; set; } 
+        public string? ThirdName { get; set; }
 
         public string UserName { get; set; } = null!;
 

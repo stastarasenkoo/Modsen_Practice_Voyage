@@ -1,5 +1,5 @@
 ﻿using Voyage.Business.Services.Interfaces;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Passenger;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Repositories.Interfaces;
 
@@ -24,7 +24,7 @@ namespace Voyage.Business.Services
             return await repository.GetByIdAsync(id, cancellationToken);
         }
 
-        public async Task<PassengerDetailsResponse> CreateAsync(CreatePassengerRequest request, CancellationToken cancellationToken)
+        public async Task<PassengerDetailsResponse> CreateAsync(PassengerRequest request, CancellationToken cancellationToken)
         {
             return await repository.CreateAsync(request, cancellationToken);
         }
@@ -34,7 +34,7 @@ namespace Voyage.Business.Services
             return await repository.DeleteAsync(id, cancellationToken);
         }
 
-        public async Task<PassengerDetailsResponse?> UpdateAsync(UpdatePassengerRequest request, CancellationToken cancellationToken)
+        public async Task<PassengerDetailsResponse?> UpdateAsync(PassengerRequest request, CancellationToken cancellationToken)
         {
             return await repository.UpdateAsync(request, cancellationToken);
         }

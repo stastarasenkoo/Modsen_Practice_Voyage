@@ -1,7 +1,7 @@
 ﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Voyage.Common.Constants;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Transport;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Infrastructure;

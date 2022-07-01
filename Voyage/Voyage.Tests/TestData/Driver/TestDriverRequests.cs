@@ -1,4 +1,4 @@
-﻿using Voyage.Common.RequestModels;
+﻿using Voyage.Common.RequestModels.Driver;
 
 namespace Voyage.Tests.TestData.Driver
 {

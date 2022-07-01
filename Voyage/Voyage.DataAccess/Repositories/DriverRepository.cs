@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Voyage.Common.Constants;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Driver;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Infrastructure;

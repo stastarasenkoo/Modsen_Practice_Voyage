@@ -1,5 +1,5 @@
 ﻿using Voyage.Common.Types;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Transport;
 
 namespace Voyage.Tests.TestData.Transport
 {

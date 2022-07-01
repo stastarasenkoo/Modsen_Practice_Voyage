@@ -1,7 +1,7 @@
 ﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Voyage.Common.Constants;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Passenger;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Infrastructure;
@@ -36,7 +36,7 @@ namespace Voyage.DataAccess.Repositories
                .FirstOrDefaultAsync(r => r.UserId == id, cancellationToken);
         }
 
-        public async Task<PassengerDetailsResponse> CreateAsync(CreatePassengerRequest request, CancellationToken cancellationToken)
+        public async Task<PassengerDetailsResponse> CreateAsync(PassengerRequest request, CancellationToken cancellationToken)
         {
             var passenger = request.Adapt<Passenger>();
 
@@ -63,7 +63,7 @@ namespace Voyage.DataAccess.Repositories
             return state == EntityState.Deleted;
         }
 
-        public async Task<PassengerDetailsResponse?> UpdateAsync(UpdatePassengerRequest request, CancellationToken cancellationToken)
+        public async Task<PassengerDetailsResponse?> UpdateAsync(PassengerRequest request, CancellationToken cancellationToken)
         {
             if (request is null || request.Points <= 0)
             {

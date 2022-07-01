@@ -1,6 +1,6 @@
-﻿namespace Voyage.Common.RequestModels
+﻿namespace Voyage.Common.RequestModels.Passenger
 {
-    public class UpdatePassengerRequest
+    public class PassengerRequest
     {
         public int UserId { get; set; }
 

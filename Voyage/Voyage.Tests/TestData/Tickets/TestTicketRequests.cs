@@ -1,32 +1,32 @@
-﻿using Voyage.Common.RequestModels;
+﻿using Voyage.Common.RequestModels.Ticket;
 
 namespace Voyage.Tests.TestData.Tickets
 {
     public class TestTicketRequests
     {
-        public static CreateTicketRequest Create =>
-            new CreateTicketRequest
+        public static TicketRequest Create =>
+            new TicketRequest
             {
                 PassengerId = 1,
                 TripId = 1,
             };
 
-        public static DeleteTicketRequest Delete =>
-            new DeleteTicketRequest()
+        public static TicketRequest Delete =>
+            new TicketRequest()
             {
                 PassengerId = 1,
                 TripId = 1,
             };
 
-        public static GetTicketDetailsRequest GetDetails =>
-            new GetTicketDetailsRequest()
+        public static TicketRequest GetDetails =>
+            new TicketRequest()
             {
                 PassengerId = 1,
                 TripId = 1
             };
 
-        public static GetTicketsRequest Get =>
-            new GetTicketsRequest()
+        public static TicketSearchRequest Get =>
+            new TicketSearchRequest()
             {
                 PassengerId = 1,
                 TripId = 1,

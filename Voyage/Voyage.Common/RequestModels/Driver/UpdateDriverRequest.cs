@@ -1,18 +1,16 @@
 ﻿using Voyage.Common.Types;
 
-namespace Voyage.Common.RequestModels
+namespace Voyage.Common.RequestModels.Driver
 {
-    public class CreateDriverRequest
+    public class UpdateDriverRequest : IDriverInfo
     {
-        public string UserName { get; set; } = null!;
-
-        public string Password { get; set; } = null!;
+        public int UserId { get; set; }
 
         public string FirstName { get; set; } = null!;
 
         public string SecondName { get; set; } = null!;
 
-        public string? ThirdName { get; set; }
+        public string? ThirdName { get; set; } = null!;
 
         public string PhoneNumber { get; set; } = null!;
 

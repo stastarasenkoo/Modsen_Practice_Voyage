@@ -1,6 +1,6 @@
 ﻿using Voyage.Common.Types;
 
-namespace Voyage.Common.RequestModels
+namespace Voyage.Common.RequestModels.Transport
 {
     public class UpdateTransportRequest : ITransportInfo
     {

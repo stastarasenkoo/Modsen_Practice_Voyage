@@ -1,6 +1,6 @@
-﻿namespace Voyage.Common.RequestModels
+﻿namespace Voyage.Common.RequestModels.Trip
 {
-    public class CreateTripRequest
+    public class CreateTripRequest : ITripInfo
     {
         public int RouteId { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Voyage.Business.Services.Interfaces;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Route;
 using Voyage.Common.ResponseModels;
 
 namespace Voyage.WebAPI.Controllers

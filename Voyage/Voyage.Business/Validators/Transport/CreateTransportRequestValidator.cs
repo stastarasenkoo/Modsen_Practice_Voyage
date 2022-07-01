@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Transport;
 
 namespace Voyage.Business.Validators.Transport
 {

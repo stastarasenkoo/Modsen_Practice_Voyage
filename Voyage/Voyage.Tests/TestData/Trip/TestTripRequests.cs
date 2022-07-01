@@ -1,5 +1,5 @@
 ﻿using System;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Trip;
 
 namespace Voyage.Tests.TestData.Trip
 {

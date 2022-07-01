@@ -1,5 +1,5 @@
 ﻿using Voyage.Business.Services.Interfaces;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Route;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Repositories.Interfaces;
 

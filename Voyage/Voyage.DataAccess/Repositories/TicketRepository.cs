@@ -1,7 +1,7 @@
 ﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Voyage.Common.Constants;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Ticket;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Infrastructure;
@@ -18,7 +18,7 @@ namespace Voyage.DataAccess.Repositories
             this.context = context;
         }
 
-        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(int page, GetTicketsRequest request, CancellationToken cancellationtoken)
+        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(int page, TicketSearchRequest request, CancellationToken cancellationtoken)
         {
             page = page <= 0 ? PaginationConstants.StartPage : page;
 
@@ -118,7 +118,7 @@ namespace Voyage.DataAccess.Repositories
             return await resultToNotNullParameters.ToListAsync(cancellationtoken);
         }
 
-        public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)
+        public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(TicketRequest request)
         {
             if (request is null)
             {
@@ -142,7 +142,7 @@ namespace Voyage.DataAccess.Repositories
             return result;
         }
 
-        public async Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request, CancellationToken cancellationtoken)
+        public async Task<TicketDetailsResponse> CreateAsync(TicketRequest request, CancellationToken cancellationtoken)
         {
             var ticket = request.Adapt<Ticket>();
 
@@ -153,7 +153,7 @@ namespace Voyage.DataAccess.Repositories
             return ticket.Adapt<TicketDetailsResponse>();
         }
 
-        public async Task<bool> DeleteAsync(DeleteTicketRequest request, CancellationToken cancellationtoken)
+        public async Task<bool> DeleteAsync(TicketRequest request, CancellationToken cancellationtoken)
         {
             var ticket = await context.Tickets.FindAsync(request.PassengerId,request.TripId);
             

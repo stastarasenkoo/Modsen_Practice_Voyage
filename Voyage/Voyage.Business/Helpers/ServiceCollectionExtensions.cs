@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Voyage.Business.Services;
 using Voyage.Business.Services.Interfaces;
-using Voyage.Business.Validators.Transport;
-using Voyage.Common.RequestModels;
 using Voyage.Common.Settings;
 using Voyage.DataAccess.Entities;
 
@@ -37,12 +35,12 @@ namespace Voyage.Business.Helpers
                 .AddAspNetIdentity<AppUser>()
                 .AddConfigurationStore(options =>
                 {
-                    options.ConfigureDbContext = b => b.UseSqlServer(database.ConnectionString,
+                    options.ConfigureDbContext = b => b.UseSqlServer(database.ConnectionString!,
                         sql => sql.MigrationsAssembly("Voyage.DataAccess"));
                 })
                 .AddOperationalStore(options =>
                 {
-                    options.ConfigureDbContext = b => b.UseSqlServer(database.ConnectionString,
+                    options.ConfigureDbContext = b => b.UseSqlServer(database.ConnectionString!,
                        sql => sql.MigrationsAssembly("Voyage.DataAccess"));
                 });
 

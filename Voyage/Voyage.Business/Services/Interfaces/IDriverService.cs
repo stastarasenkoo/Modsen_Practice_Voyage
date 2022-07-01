@@ -1,4 +1,4 @@
-﻿using Voyage.Common.RequestModels;
+﻿using Voyage.Common.RequestModels.Driver;
 using Voyage.Common.ResponseModels;
 
 namespace Voyage.Business.Services.Interfaces

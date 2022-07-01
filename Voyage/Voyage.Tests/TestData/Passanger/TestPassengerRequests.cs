@@ -1,18 +1,18 @@
-﻿using Voyage.Common.RequestModels;
+﻿using Voyage.Common.RequestModels.Passenger;
 
 namespace Voyage.Tests.TestData.Passanger
 {
     public class TestPassengerRequests
     {
-        public static CreatePassengerRequest Create =>
-           new CreatePassengerRequest
+        public static PassengerRequest Create =>
+           new PassengerRequest
            {
                UserId = 1,
                Points = 1,
            };
 
-        public static UpdatePassengerRequest Update =>
-            new UpdatePassengerRequest()
+        public static PassengerRequest Update =>
+            new PassengerRequest()
             {
                 UserId = 1,
                 Points = 5

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Voyage.Business.Services.Interfaces;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Passenger;
 using Voyage.Common.ResponseModels;
 
 namespace Voyage.WebAPI.Controllers
@@ -60,7 +60,7 @@ namespace Voyage.WebAPI.Controllers
         [ProducesResponseType(typeof(PassengerDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CreateAsync(CreatePassengerRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateAsync(PassengerRequest request, CancellationToken cancellationToken)
         {
             return Ok(await service.CreateAsync(request, cancellationToken));
         }
@@ -74,7 +74,7 @@ namespace Voyage.WebAPI.Controllers
         [ProducesResponseType(typeof(PassengerDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateAsync(UpdatePassengerRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateAsync(PassengerRequest request, CancellationToken cancellationToken)
         {
             return Ok(await service.UpdateAsync(request, cancellationToken));
         }

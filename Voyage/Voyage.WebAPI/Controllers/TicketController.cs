@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Voyage.Business.Services.Interfaces;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Ticket;
 using Voyage.Common.ResponseModels;
 
 namespace Voyage.WebAPI.Controllers
@@ -30,7 +30,7 @@ namespace Voyage.WebAPI.Controllers
         [ProducesResponseType(typeof(IEnumerable<TicketShortInfoResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAsync([FromQuery] int page,[FromQuery] GetTicketsRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAsync([FromQuery] int page,[FromQuery] TicketSearchRequest request, CancellationToken cancellationToken)
         {
             return Ok(await service.GetAsync(page, request, cancellationToken));
         }
@@ -42,7 +42,7 @@ namespace Voyage.WebAPI.Controllers
         [ProducesResponseType(typeof(TicketDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetTicketDetailsAsync([FromQuery] GetTicketDetailsRequest request)
+        public async Task<IActionResult> GetTicketDetailsAsync([FromQuery] TicketRequest request)
         {
             return Ok(await service.GetTicketDetailsAsync(request));
         }
@@ -56,7 +56,7 @@ namespace Voyage.WebAPI.Controllers
         [ProducesResponseType(typeof(TicketDetailsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CreateAsync(CreateTicketRequest request, CancellationToken cancellationtoken)
+        public async Task<IActionResult> CreateAsync(TicketRequest request, CancellationToken cancellationtoken)
         {
             return Ok(await service.CreateAsync(request, cancellationtoken));
         }
@@ -70,7 +70,7 @@ namespace Voyage.WebAPI.Controllers
         [ProducesResponseType(typeof(bool), StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeleteAsync([FromQuery] DeleteTicketRequest request, CancellationToken cancellationtoken)
+        public async Task<IActionResult> DeleteAsync([FromQuery] TicketRequest request, CancellationToken cancellationtoken)
         {
             await service.DeleteAsync(request, cancellationtoken);
 

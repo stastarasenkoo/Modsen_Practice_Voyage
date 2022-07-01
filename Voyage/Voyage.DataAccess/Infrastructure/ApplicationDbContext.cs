@@ -39,12 +39,12 @@ namespace Voyage.DataAccess.Infrastructure
         {
             optionsBuilder
                 .UseLazyLoadingProxies()
-                .UseSqlServer(databaseConfigs.ConnectionString);
+                .UseSqlServer(databaseConfigs.ConnectionString!);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.EnsureSeedData(databaseConfigs.ConnectionString);
+            builder.EnsureSeedData(databaseConfigs.ConnectionString!);
             builder.Seed();
             ConfigureEntities(builder);
             base.OnModelCreating(builder);

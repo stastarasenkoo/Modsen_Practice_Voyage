@@ -1,6 +1,6 @@
-﻿namespace Voyage.Common.RequestModels
+﻿namespace Voyage.Common.RequestModels.Ticket
 {
-    public class CreateTicketRequest
+    public class TicketRequest
     {
         public int PassengerId { get; set; }
 

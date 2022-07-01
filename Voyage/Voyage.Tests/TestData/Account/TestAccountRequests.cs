@@ -1,11 +1,11 @@
-﻿using Voyage.Common.RequestModels;
+﻿using Voyage.Common.RequestModels.Account;
 
 namespace Voyage.Tests.TestData.Account
 {
     public class TestAccountRequests
     {
-        public static RegisterModelRequest Register =>
-           new RegisterModelRequest
+        public static SignUpRequestModel Register =>
+           new SignUpRequestModel
            {
                FirstName = "First",
                SecondName = "Second",

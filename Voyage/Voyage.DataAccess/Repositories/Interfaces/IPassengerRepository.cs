@@ -1,4 +1,4 @@
-﻿using Voyage.Common.RequestModels;
+﻿using Voyage.Common.RequestModels.Passenger;
 using Voyage.Common.ResponseModels;
 
 namespace Voyage.DataAccess.Repositories.Interfaces
@@ -9,9 +9,9 @@ namespace Voyage.DataAccess.Repositories.Interfaces
 
         Task<IEnumerable<PassengerShortInfoResponse>> GetAsync(int page, CancellationToken cancellationToken);
 
-        Task<PassengerDetailsResponse> CreateAsync(CreatePassengerRequest request, CancellationToken cancellationToken);
+        Task<PassengerDetailsResponse> CreateAsync(PassengerRequest request, CancellationToken cancellationToken);
 
-        Task<PassengerDetailsResponse?> UpdateAsync(UpdatePassengerRequest request, CancellationToken cancellationToken);
+        Task<PassengerDetailsResponse?> UpdateAsync(PassengerRequest request, CancellationToken cancellationToken);
 
         Task<bool> DeleteAsync(int id, CancellationToken cancellationToken);
     }

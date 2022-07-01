@@ -10,7 +10,7 @@ namespace Voyage.Common.ResponseModels
 
         public string UserSecondName { get; set; } = null!;
 
-        public string UserThirdName { get; set; } = null!;
+        public string? UserThirdName { get; set; } = null!;
 
         public string UserPhoneNumber { get; set; } = null!;
 

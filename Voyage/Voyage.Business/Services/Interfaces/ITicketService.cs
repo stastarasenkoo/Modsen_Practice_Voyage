@@ -1,16 +1,16 @@
-﻿using Voyage.Common.RequestModels;
+﻿using Voyage.Common.RequestModels.Ticket;
 using Voyage.Common.ResponseModels;
 
 namespace Voyage.Business.Services.Interfaces
 {
     public interface ITicketService
     {
-        Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request);
+        Task<TicketDetailsResponse?> GetTicketDetailsAsync(TicketRequest request);
 
-        Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(int page, GetTicketsRequest request, CancellationToken cancellationtoken);
+        Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(int page, TicketSearchRequest request, CancellationToken cancellationtoken);
 
-        Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request, CancellationToken cancellationtoken);
+        Task<TicketDetailsResponse> CreateAsync(TicketRequest request, CancellationToken cancellationtoken);
 
-        Task<bool> DeleteAsync(DeleteTicketRequest request, CancellationToken cancellationtoken);
+        Task<bool> DeleteAsync(TicketRequest request, CancellationToken cancellationtoken);
     }
 }

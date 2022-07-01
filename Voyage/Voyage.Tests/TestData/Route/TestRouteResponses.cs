@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Voyage.Common.ResponseModels;
 
 namespace Voyage.Tests.TestData.Route

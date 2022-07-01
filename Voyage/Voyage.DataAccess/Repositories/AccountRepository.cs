@@ -1,6 +1,6 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Identity;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Account;
 using Voyage.DataAccess.Entities;
 using Voyage.DataAccess.Infrastructure;
 using Voyage.DataAccess.Repositories.Interfaces;
@@ -20,7 +20,7 @@ namespace Voyage.DataAccess.Repositories
             this.context = context;
         }
 
-        public async Task<AppUser> RegisterAsync(RegisterModelRequest registerRequest, CancellationToken cancellationToken)
+        public async Task<AppUser> RegisterAsync(SignUpRequestModel registerRequest, CancellationToken cancellationToken)
         {
             var user = registerRequest.Adapt<AppUser>();
 

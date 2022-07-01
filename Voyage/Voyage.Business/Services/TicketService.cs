@@ -1,5 +1,5 @@
 ﻿using Voyage.Business.Services.Interfaces;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Ticket;
 using Voyage.Common.ResponseModels;
 using Voyage.DataAccess.Repositories.Interfaces;
 
@@ -13,24 +13,24 @@ namespace Voyage.Business.Services
             this.repository = repository;
         }
 
-        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(int page, GetTicketsRequest request, CancellationToken cancellationtoken)
+        public async Task<IEnumerable<TicketShortInfoResponse>?> GetAsync(int page, TicketSearchRequest request, CancellationToken cancellationtoken)
         {
             return await repository.GetAsync(page, request, cancellationtoken);
         }
 
-        public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(GetTicketDetailsRequest request)
+        public async Task<TicketDetailsResponse?> GetTicketDetailsAsync(TicketRequest request)
         {
             return await repository.GetTicketDetailsAsync(request);
         }
 
-        public async Task<TicketDetailsResponse> CreateAsync(CreateTicketRequest request, CancellationToken cancellationtoken)
+        public async Task<TicketDetailsResponse> CreateAsync(TicketRequest request, CancellationToken cancellationtoken)
         {
             var ticket = await repository.CreateAsync(request, cancellationtoken);
 
             return ticket;
         }
 
-        public async Task<bool> DeleteAsync(DeleteTicketRequest request, CancellationToken cancellationtoken)
+        public async Task<bool> DeleteAsync(TicketRequest request, CancellationToken cancellationtoken)
         {
             return await repository.DeleteAsync(request, cancellationtoken);
         }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Voyage.Business.Services.Interfaces;
-using Voyage.Common.RequestModels;
+using Voyage.Common.RequestModels.Account;
 using Voyage.DataAccess.Entities;
 
 namespace Voyage.WebAPI.Controllers
@@ -32,7 +32,7 @@ namespace Voyage.WebAPI.Controllers
         [ProducesResponseType(typeof(AppUser), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> RegisterAsync(RegisterModelRequest registerRequest, CancellationToken cancellationToken)
+        public async Task<IActionResult> RegisterAsync(SignUpRequestModel registerRequest, CancellationToken cancellationToken)
         {
             return Ok(await service.RegisterAsync(registerRequest, cancellationToken));
         }
